@@ -31,6 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
-application.properties
-pom.xml
-C:\Users\chris\Desktop\project\src\main\resources\application.properties
+
+
+
+src\main\resources\application.properties
