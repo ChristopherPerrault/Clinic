@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Clinic | Doctor Dashboard</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <form th:action="@{/doctor_dashboard}" method="POST">
+                <h3>
+                    Welcome Dr. (firstname lastname)
+                </h3>
+                <h2>What can we help you with today?</h2>
+                <br>
+                <h3><a th:href="@{/viewPatientTickets}">Consult Health Tickets</a></h3>
+                <br>
+                <h3><a th:href="@{/viewDoctorAccount}">Manage Your Account </a></h3>
+                <!-- remember, basic stuff just to get rolling. "Manage" likely belongs in a nav bar, for example -->
+                <br>
+                <br>
+                <h3><a th:href="@{/loggedOut}">Log Out</a></h3>
+            </form>
+        </div>
+
+</body>
+
+</html>
