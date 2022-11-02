@@ -33,5 +33,15 @@ build/
 .vscode/
 
 
-
+# trying to add application.properties to gitignore simply does not work unless we get real complicated here
+# ---
+# maybe this works, we'll see
 .properties
+*.properties
+application.properties
+src\main\resources\application.properties
+src/main/resources/application.properties
+pom.xml
+*.xml
+.xml
+C:\Users\chris\Desktop\project\pom.xml
