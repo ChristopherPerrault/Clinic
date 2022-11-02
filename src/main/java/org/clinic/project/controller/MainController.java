@@ -1,25 +1,32 @@
 package org.clinic.project.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.clinic.project.model.HealthTicket;
 import org.clinic.project.model.Patient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
 
     /*-------------------------- SERVICES  --------------------------*/
     // @Autowired
-    // PatientService patientService;
+    // private PatientService patientService;
 
     // @Autowired
-    // DoctorService doctorService;
+    // private DoctorService doctorService;
 
     // @Autowired
-    // HealthTicketService healthTicketService;
+    // private HealthTicketService healthTicketService;
 
     /*-------------------------- HOMEPAGE  --------------------------*/
 	@GetMapping("")
@@ -60,8 +67,8 @@ public class MainController {
     /*---- VIEW ALL PATIENT TICKETS ----*/
 	@RequestMapping("/view_patient_tickets")
 	public String listPatientTickets(Model model) {
-		List<HealthTicket> listPatientTickets = healthTicketService.listAllPatientTickets();
-		model.addAttribute("listPatientTickets", listPatientTickets);
+		//List<HealthTicket> listPatientTickets = healthTicketService.listAllPatientTickets();
+		//model.addAttribute("listPatientTickets", listPatientTickets);
 		return "templatePlaceholder";
 	}
 
@@ -80,7 +87,7 @@ public class MainController {
 			return "templatePlaceholder";
 
 		} else {
-			healthTicketService.save(healthTicket);
+			//healthTicketService.save(healthTicket);
 			return "redirect:view_patient_tickets";
 		}
 	}
@@ -88,7 +95,7 @@ public class MainController {
     /*---- DELETE PATIENT TICKET ----*/
 	@RequestMapping("/view_patient_tickets/delete/{id}")
 	public String deletePatientTicket(@PathVariable(name = "id") int id) {
-		healthTicketService.delete(id);
+		//healthTicketService.delete(id);
 		return "redirect:/view_patient_tickets";
 	}
 
@@ -96,8 +103,8 @@ public class MainController {
 	@RequestMapping("/view_patient_tickets/edit/{id}")
 	public ModelAndView showEditPatientTicket(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("templatePlaceholder");
-        HealthTicket healthTicket = healthTicketService.get.(id);
-        mav.addObject("healthTicket", healthTicket);
+        //HealthTicket healthTicket = healthTicketService.get.(id);
+        //mav.addObject("healthTicket", healthTicket);
 		return mav;
 	}
 
@@ -109,7 +116,7 @@ public class MainController {
 			return "templatePlaceholder";
 
 		} else {
-			healthTicketService.save(healthTicket);
+			//healthTicketService.save(healthTicket);
 			return "redirect:view_patient_tickets";
 		}
 	}
