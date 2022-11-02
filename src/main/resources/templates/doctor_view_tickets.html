@@ -29,9 +29,9 @@
                         <td th:text="${healthticket.symptoms}">Symptoms</td>
                         <td th:text="${healthticket.diagnosis}">Diagnosis</td>
                         <td>
-                            <a th:href="@{'/ticketEdit/' + ${healthticket.ticketID}}">Edit</a>
+                            <a th:href="@{'/ticket_edit/' + ${healthticket.ticketID}}">Edit</a>
                             &nbsp;&nbsp;
-                            <a th:href="@{'/ticketDelete/' + ${healthticket.ticketID}}">Delete</a>
+                            <a th:href="@{'/ticket_delete/' + ${healthticket.ticketID}}">Delete</a>
                         </td>
                     </tr>
                 </tbody>

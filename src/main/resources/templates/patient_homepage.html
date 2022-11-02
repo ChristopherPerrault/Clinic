@@ -3,28 +3,28 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>Clinic | Patient Dashboard</title>
+    <title>Clinic | Patient Homepage</title>
 </head>
 
 <body>
     <div>
         <div>
-            <form th:action="@{/patient_dashboard}" method="POST">
+            <form th:action="@{/patient_homepage}" method="POST">
                 <h3>
                     Welcome (firstname lastname)
                 </h3>
                 <h2>What can we help you with today?</h2>
                 <br>
 
-                <h3><a th:href="@{/patientAddTicket}">Consult a Doctor</a></h3>
+                <h3><a th:href="@{/patient_add_ticket}">Consult a Doctor</a></h3>
                 <br>
-                <h3><a th:href="@{/viewPatientTickets}">View Your Health Tickets</a></h3>
+                <h3><a th:href="@{/patient_view_tickets}">View Your Health Tickets</a></h3>
                 <br>
-                <h3><a th:href="@{/viewPatientAccount}">Manage Your Account </a></h3>
+                <h3><a th:href="@{/patient_edit}">Manage Your Account </a></h3>
                 <!-- remember, basic stuff just to get rolling. "Manage" likely belongs in a nav bar, for example -->
                 <br>
                 <br>
-                <h3><a th:href="@{/loggedOut}">Log Out</a></h3>
+                <h3><a th:href="@{/logged_out}">Log Out</a></h3>
             </form>
         </div>
 
