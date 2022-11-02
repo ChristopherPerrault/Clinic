@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Clinic | Update Doctor</title>
+</head>
+<!--! ---------------------- -->
+<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
+<!--! ---------------------- -->
+
+<body>
+    <div>
+        <h2>Update Your Doctor Account Details:</h2>
+        <br />
+        <form action="#" th:action="@{/process_doctor_edit}" th:object="${doctor}" method="POST">
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" th:field="*{firstName}" /></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" th:field="*{lastName}" /></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" th:field="*{email}" /></td>
+                </tr>
+                <tr>
+                    <td>Enter a new Password:</td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    <td><input type="date" th:field="*{dateOfBirth}" /></td>
+                </tr>
+                <tr>
+                    <td>Sex:</td>
+                    <td><input type="text" th:field="*{sex}" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Update</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
