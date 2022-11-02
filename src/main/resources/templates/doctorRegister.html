@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Clinic | Register New Patient</title>
+    <title>Clinic | Register New Doctor</title>
 </head>
 <!--! ---------------------- -->
 <!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
@@ -11,9 +11,9 @@
 
 <body>
     <div>
-        <h2>Patient Registration Form</h2>
+        <h2>Doctor Registration Form</h2>
         <br />
-        <form action="#" th:action="@{/process_reg_patient}" th:object="${patient}" method="POST">
+        <form action="#" th:action="@{/process_doctor_register}" th:object="${doctor}" method="POST">
             <table>
                 <tr>
                     <td>First Name:</td>
@@ -38,11 +38,6 @@
                 <tr>
                     <td>Sex:</td>
                     <td><input type="text" th:field="*{sex}" /></td>
-                </tr>
-                <tr>
-                    <!-- for now it's a type text but I'll change this to textarea once figured out, seems to be an issue in thymeleaf -->
-                    <td>Pre-Existing Medical Conditions:</td>
-                    <td><input type="text" th:field="*{medicalConditions}" /></td>
                 </tr>
                 <tr>
                     <td><button type="submit">Register</button> </td>

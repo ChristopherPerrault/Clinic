@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Clinic | Register New Patient</title>
+</head>
+<!--! ---------------------- -->
+<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
+<!--! ---------------------- -->
+
+<body>
+    <div>
+        <h2>Patient Registration Form</h2>
+        <br />
+        <form action="#" th:action="@{/process_patient_register}" th:object="${patient}" method="POST">
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" th:field="*{firstName}" /></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" th:field="*{lastName}" /></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" th:field="*{email}" /></td>
+                </tr>
+                <tr>
+                    <td>Enter a Password:</td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    <td><input type="date" th:field="*{dateOfBirth}" /></td>
+                </tr>
+                <tr>
+                    <td>Sex:</td>
+                    <td><input type="text" th:field="*{sex}" /></td>
+                </tr>
+                <tr>
+                    <!-- for now it's a type text but I'll change this to textarea once figured out, seems to be an issue in thymeleaf -->
+                    <td>Pre-Existing Medical Conditions:</td>
+                    <td><input type="text" th:field="*{medicalConditions}" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Register</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
