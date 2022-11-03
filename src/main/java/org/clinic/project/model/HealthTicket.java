@@ -15,10 +15,10 @@ public class HealthTicket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketID;
 
-    @Column(nullable = false, length = 300, name = "symptoms")
+    @Column(nullable = true, length = 300, name = "symptoms")
     private String symptoms;
 
-    @Column(nullable = false, length = 300, name = "diagnois")
+    @Column(nullable = true, length = 300, name = "diagnois")
     private String diagnosis;
 
     public Long getTicketID() {
