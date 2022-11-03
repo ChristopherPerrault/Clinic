@@ -18,8 +18,7 @@ import javax.persistence.Table;
 public class Doctor {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int doctorID;
+    private String doctorID;
 
     @Column(nullable = false, length = 25, name = "first_name")
     private String firstName;
@@ -43,11 +42,11 @@ public class Doctor {
     @JoinColumn(name = "doctorID", referencedColumnName = "doctorID")
     private List<HealthTicket> healthtickets;
 
-    public int getDoctorID() {
+    public String getDoctorID() {
         return doctorID;
     }
 
-    public void setDoctorID(int doctorID) {
+    public void setDoctorID(String doctorID) {
         this.doctorID = doctorID;
     }
 

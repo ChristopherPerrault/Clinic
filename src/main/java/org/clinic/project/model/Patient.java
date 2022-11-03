@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -18,8 +16,7 @@ import javax.persistence.Table;
 public class Patient {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int patientID;
+    private String patientID;
 
     @Column(nullable = false, length = 25, name = "first_name")
     private String firstName;
@@ -46,11 +43,11 @@ public class Patient {
     @JoinColumn(name = "patientID", referencedColumnName = "patientID")
     private List<HealthTicket> healthtickets;
     
-    public int getPatientID() {
+    public String getPatientID() {
         return patientID;
     }
 
-    public void setPatientID(int patientID) {
+    public void setPatientID(String patientID) {
         this.patientID = patientID;
     }
 
