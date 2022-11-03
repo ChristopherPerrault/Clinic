@@ -3,12 +3,6 @@ package org.clinic.project.controller;
 import java.util.List;
 
 import javax.validation.Valid;
-
-import org.clinic.project.model.HealthTicket;
-import org.clinic.project.model.Patient;
-//import org.clinic.project.service.DoctorService;
-import org.clinic.project.service.HealthTicketService;
-import org.clinic.project.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,28 +14,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.clinic.project.model.Doctor;
+import org.clinic.project.model.HealthTicket;
+import org.clinic.project.model.Patient;
+import org.clinic.project.service.DoctorService;
+import org.clinic.project.service.HealthTicketService;
+import org.clinic.project.service.PatientService;
+
 @Controller
 public class MainController {
 
-    /*-------------------------- SERVICES  --------------------------*/
-    @Autowired
-    private PatientService patientService;
+	/*-------------------------- SERVICES  --------------------------*/
+	@Autowired
+	private PatientService patientService;
 
-    // @Autowired
-    // private DoctorService doctorService;
+	@Autowired
+	private DoctorService doctorService;
 
-    @Autowired
-    private HealthTicketService healthTicketService;
+	@Autowired
+	private HealthTicketService healthTicketService;
 
-    /*-------------------------- HOMEPAGE  --------------------------*/
+	/*-------------------------- HOMEPAGE  --------------------------*/
 	@GetMapping("")
 	public String viewHomePageSignedOut() {
 		return "index";
 	}
 
-    /*-------------------------- PATIENT REGISTRATION --------------------------*/
+	/*-------------------------- PATIENT REGISTRATION --------------------------*/
 	/*---- REGISTER PATIENT ----*/
-	@GetMapping("/register_patient")
+	@GetMapping("/patient_register")
 	public String showPatientRegistrationForm(Patient patient) {
 
 		return "patient_register";
@@ -62,14 +63,14 @@ public class MainController {
 		}
 	}
 
-    /*-------------------------- PATIENT (SIGNED IN) --------------------------*/
-    @RequestMapping("/patient_homepage")
+	/*-------------------------- PATIENT (SIGNED IN) --------------------------*/
+	@RequestMapping("/patient_homepage")
 	public String welcomePatient(Patient patient) {
 
 		return "templatePlaceholder";
 	}
 
-    /*---- VIEW ALL PATIENT TICKETS ----*/
+	/*---- VIEW ALL PATIENT TICKETS ----*/
 	@RequestMapping("/view_patient_tickets")
 	public String listPatientTickets(Model model) {
 		List<HealthTicket> listPatientTickets = healthTicketService.findAll();
@@ -77,14 +78,14 @@ public class MainController {
 		return "templatePlaceholder";
 	}
 
-    /*---- ADD PATIENT TICKET ----*/
+	/*---- ADD PATIENT TICKET ----*/
 	@RequestMapping("/view_patient_tickets/add_ticket")
 	public String addPatientTicket(Patient patient) {
 
 		return "templatePlaceholder";
 	}
 
-    /*---- PROCESS ADDED PATIENT TICKET ----*/
+	/*---- PROCESS ADDED PATIENT TICKET ----*/
 	@PostMapping("/view_patient_tickets/process_ticket")
 	public String processTeacher(@Valid HealthTicket healthTicket, BindingResult bindingResult) {
 
@@ -97,19 +98,19 @@ public class MainController {
 		}
 	}
 
-    /*---- DELETE PATIENT TICKET ----*/
+	/*---- DELETE PATIENT TICKET ----*/
 	@RequestMapping("/view_patient_tickets/delete/{id}")
 	public String deletePatientTicket(@PathVariable(name = "id") int id) {
 		healthTicketService.delete(id);
 		return "redirect:/view_patient_tickets";
 	}
 
-    /*---- EDIT PATIENT TICKET ----*/
+	/*---- EDIT PATIENT TICKET ----*/
 	@RequestMapping("/view_patient_tickets/edit/{id}")
 	public ModelAndView showEditPatientTicket(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("templatePlaceholder");
-        HealthTicket healthTicket = healthTicketService.get(id);
-        mav.addObject("healthTicket", healthTicket);
+		HealthTicket healthTicket = healthTicketService.get(id);
+		mav.addObject("healthTicket", healthTicket);
 		return mav;
 	}
 
@@ -125,5 +126,21 @@ public class MainController {
 			return "redirect:view_patient_tickets";
 		}
 	}
-}
 
+	/*-------------------------- DOCTOR REGISTRATION --------------------------*/
+
+	@PostMapping("/process_doctor_register")
+	public String processDoctorRegister(@Valid Doctor doctor, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			return "doctor_register";
+		} else {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String encodedPassword = passwordEncoder.encode(doctor.getPassword());
+			doctor.setPassword(encodedPassword);
+			doctorService.save(doctor);
+			return "redirect:/login";
+		}
+	}
+
+}

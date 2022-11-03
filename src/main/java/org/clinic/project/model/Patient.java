@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "patient")
 public class Patient {
-    
+
     @Id
     @Column(nullable = false, length = 10)
     private String patientID;
@@ -43,7 +43,7 @@ public class Patient {
     @OneToMany(targetEntity = HealthTicket.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "patientID", referencedColumnName = "patientID")
     private List<HealthTicket> healthtickets;
-    
+
     public String getPatientID() {
         return patientID;
     }
@@ -115,5 +115,4 @@ public class Patient {
                 + medicalConditions + "]";
     }
 
-    
 }
