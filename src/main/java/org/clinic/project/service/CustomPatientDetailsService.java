@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import org.clinic.project.dao.PatientRepository;
+import org.clinic.project.model.CustomPatientDetails;
 import org.clinic.project.model.Patient;
-import org.clinic.project.security.CustomPatientDetails;
 
 public class CustomPatientDetailsService implements UserDetailsService {
 

@@ -11,18 +11,21 @@
         <div>
             <h2>Doctor Log In</h2>
         </div>
-        <form th:action="@{/doctor_login}" th:object="${doctor}" method="POST">
+        <div th:if="${param.error}">
+            <h4 style="color: red">Invalid ID or Password</h4>
+        </div>
+        <form th:action="@{/doctor/login}" th:object="${doctor}" method="POST">
             <div>
                 <div>
-                    <label>Email: </label>
+                    <label>Doctor ID: </label>
                     <div>
-                        <input type="email" th:field="*{email}" />
+                        <input type="text" name="doctorID" />
                     </div>
                 </div>
                 <div>
                     <label>Password: </label>
                     <div>
-                        <input type="password" th:field="*{password}" />
+                        <input type="password" name="password" />
                     </div>
                 </div>
 

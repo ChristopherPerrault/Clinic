@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "patient")
 public class Patient {
@@ -32,12 +34,13 @@ public class Patient {
     private String password;
 
     @Column(nullable = false, name = "date_of_birth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
     @Column(nullable = false, length = 6, name = "sex")
     private String sex;
 
-    @Column(nullable = false, length = 300, name = "medical_conditions")
+    @Column(nullable = true, length = 300, name = "medical_conditions")
     private String medicalConditions;
 
     @OneToMany(targetEntity = HealthTicket.class, cascade = CascadeType.ALL)
@@ -113,6 +116,10 @@ public class Patient {
         return "Patient [patientID=" + patientID + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
                 + email + ", password=" + password + ", dob=" + dob + ", sex=" + sex + ", medicalConditions="
                 + medicalConditions + "]";
+    }
+
+    public static Object withUsername(String string) {
+        return null;
     }
 
     

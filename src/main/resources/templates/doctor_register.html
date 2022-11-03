@@ -16,6 +16,10 @@
         <form action="#" th:action="@{/process_doctor_register}" th:object="${doctor}" method="POST">
             <table>
                 <tr>
+                    <td>Doctor ID:</td>
+                    <td><input type="text" th:field="*{doctorID}" /></td>
+                </tr>
+                <tr>
                     <td>First Name:</td>
                     <td><input type="text" th:field="*{firstName}" /></td>
                 </tr>
@@ -33,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>Date of Birth:</td>
-                    <td><input type="date" th:field="*{dateOfBirth}" /></td>
+                    <td><input type="date" th:field="*{dob}" /></td>
                 </tr>
                 <tr>
                     <td>Sex:</td>

@@ -1,11 +1,9 @@
-package org.clinic.project.security;
+package org.clinic.project.model;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import org.clinic.project.model.Patient;
 
 public class CustomPatientDetails implements UserDetails {
 

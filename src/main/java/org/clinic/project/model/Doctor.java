@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "doctor")
 public class Doctor {
@@ -33,6 +35,7 @@ public class Doctor {
     private String password;
 
     @Column(nullable = false, name = "date_of_birth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
     @Column(nullable = false, length = 6, name = "sex")
@@ -96,6 +99,10 @@ public class Doctor {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public static Object withUsername(String string) {
+        return null;
     }
 
     
