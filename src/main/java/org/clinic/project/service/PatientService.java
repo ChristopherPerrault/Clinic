@@ -21,7 +21,7 @@ public class PatientService {
     }
 
     // READ BY ID
-    public Patient get(int patientID) {
+    public Patient get(String patientID) {
         return patientRepo.findById(patientID).get();
     }
 
@@ -31,7 +31,7 @@ public class PatientService {
     }
 
     // DELETE
-    public void delete(int patientID) {
+    public void delete(String patientID) {
         patientRepo.deleteById(patientID);
     }
 }

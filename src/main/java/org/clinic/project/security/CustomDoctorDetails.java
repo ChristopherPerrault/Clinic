@@ -51,6 +51,6 @@ public class CustomDoctorDetails implements UserDetails {
     }
 
     public String getName() {
-        return doctor.getName();
+        return doctor.getFirstName() + doctor.getLastName();
     }
 }

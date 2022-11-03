@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 public class Doctor {
     
     @Id
+    @Column(nullable = false, length = 10)
     private String doctorID;
 
     @Column(nullable = false, length = 25, name = "first_name")

@@ -50,7 +50,7 @@ public class CustomPatientDetails implements UserDetails {
         return true;
     }
 
-    public String getName() {
-        return patient.getName();
+    public String getFullName() {
+        return patient.getFirstName() + patient.getLastName();
     }
 }

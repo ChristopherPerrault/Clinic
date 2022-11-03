@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import org.clinic.project.model.Patient;
 
-public interface PatientRepository extends JpaRepository<Patient, Integer> {
+public interface PatientRepository extends JpaRepository<Patient, String> {
     @Query("SELECT p FROM Patient p WHERE p.patientID = ?1")
-    public Patient findByPatientID(int patientID);
+    public Patient findByPatientID(String patientID);
 }

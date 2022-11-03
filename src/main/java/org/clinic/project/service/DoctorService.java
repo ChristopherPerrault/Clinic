@@ -22,7 +22,7 @@ public class DoctorService {
     }
 
     // READ BY ID
-    public Doctor get(int doctorID) {
+    public Doctor get(String doctorID) {
         return doctorRepo.findById(doctorID).get();
     }
 
@@ -32,7 +32,7 @@ public class DoctorService {
     }
 
     // DELETE
-    public void delete(int doctorID) {
+    public void delete(String doctorID) {
         doctorRepo.deleteById(doctorID);
     }
 }
