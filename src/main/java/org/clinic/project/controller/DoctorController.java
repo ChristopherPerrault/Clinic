@@ -1,13 +1,11 @@
 package org.clinic.project.controller;
 
-import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,32 +22,32 @@ public class DoctorController {
 
     // @Autowired
     // private HealthTicketService healthTicketService;
-    
- /*-------------------------- DOCTOR REGISTRATION --------------------------*/
-	/*---- REGISTER DOCTOR ----*/
-	@RequestMapping("/doctor_register")
-	public String showDoctorRegistrationForm(Model model) {
-		model.addAttribute("doctor", new Doctor());
-		return "doctor_register";
-	}
 
-	/*---- PROCESS REGISTER ----*/
-	@PostMapping("/process_doctor_register")
-	public String processDoctorRegister(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult) {
+    /*-------------------------- DOCTOR REGISTRATION --------------------------*/
+    /*---- REGISTER DOCTOR ----*/
+    @RequestMapping("/doctor_register")
+    public String showDoctorRegistrationForm(Model model) {
+        model.addAttribute("doctor", new Doctor());
+        return "doctor_register";
+    }
 
-		if (bindingResult.hasErrors()) {
-			return "patient_register";
-		} else {
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			String encodedPassword = passwordEncoder.encode(doctor.getPassword());
-			doctor.setPassword(encodedPassword);
-			doctorService.save(doctor);
-			return "redirect:/doctor/login";
-		}
-	}
+    /*---- PROCESS REGISTER ----*/
+    @PostMapping("/process_doctor_register")
+    public String processDoctorRegister(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult) {
 
-	@RequestMapping("/doctor/login")
-	public String viewDoctorloginpage() {
-		return "doctor_login";
-	}
+        if (bindingResult.hasErrors()) {
+            return "patient_register";
+        } else {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = passwordEncoder.encode(doctor.getPassword());
+            doctor.setPassword(encodedPassword);
+            doctorService.save(doctor);
+            return "redirect:/doctor/login";
+        }
+    }
+
+    @RequestMapping("/doctor/login")
+    public String viewDoctorloginpage() {
+        return "doctor_login";
+    }
 }
