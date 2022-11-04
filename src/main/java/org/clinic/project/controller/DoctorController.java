@@ -34,10 +34,17 @@ public class DoctorController {
     /*---- PROCESS REGISTER ----*/
     @PostMapping("/process_doctor_register")
     public String processDoctorRegister(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult) {
-
+    	if (doctor.getDob() == null) {
+			bindingResult.rejectValue("dob", "doctor.dob", "Birthday cannot be blank!");
+			return "doctor_register";
+		}
+		if (!(doctor.getPlainPassword().contentEquals(doctor.getPassword()))) {
+			bindingResult.rejectValue("password", "doctor.password", "Passwords do not match!");
+		}
         if (bindingResult.hasErrors()) {
-            return "patient_register";
+            return "doctor_register";
         } else {
+        	doctor.setPassword(doctor.getPlainPassword());
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String encodedPassword = passwordEncoder.encode(doctor.getPassword());
             doctor.setPassword(encodedPassword);

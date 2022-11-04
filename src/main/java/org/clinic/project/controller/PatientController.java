@@ -21,106 +21,112 @@ import org.clinic.project.service.PatientService;
 @Controller
 public class PatientController {
 
-    /*---- SERVICES ----*/
-    @Autowired
-    private PatientService patientService;
+	/*---- SERVICES ----*/
+	@Autowired
+	private PatientService patientService;
 
-    @Autowired
-    private HealthTicketService healthTicketService;
+	@Autowired
+	private HealthTicketService healthTicketService;
 
-    /*-------------------------- PATIENT REGISTRATION --------------------------*/
+	/*-------------------------- PATIENT REGISTRATION --------------------------*/
 
-    /*---- REGISTER PATIENT ----*/
-    @GetMapping("/patient_register")
-    public String showPatientRegistrationForm(Model model) {
-        model.addAttribute("patient", new Patient());
-        return "patient_register";
-    }
+	/*---- REGISTER PATIENT ----*/
+	@GetMapping("/patient_register")
+	public String showPatientRegistrationForm(Model model) {
+		model.addAttribute("patient", new Patient());
+		return "patient_register";
+	}
 
-    /*---- PROCESS REGISTER ----*/
-    @PostMapping("/process_patient_register")
-    public String processPatientRegister(@Valid Patient patient, BindingResult bindingResult) {
+	/*---- PROCESS REGISTER ----*/
+	@PostMapping("/process_patient_register")
+	public String processPatientRegister(@Valid Patient patient, BindingResult bindingResult) {
+		if (patient.getDob() == null) {
+			bindingResult.rejectValue("dob", "patient.dob", "Birthday cannot be blank!");
+			return "patient_register";
+		}
+		if (!(patient.getPlainPassword().contentEquals(patient.getPassword()))) {
+			bindingResult.rejectValue("password", "patient.password", "Passwords do not match!");
+		}
+		if (bindingResult.hasErrors()) {
+			return "patient_register";
+		} else {
+			patient.setPassword(patient.getPlainPassword());
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String encodedPassword = passwordEncoder.encode(patient.getPassword());
+			patient.setPassword(encodedPassword);
+			patientService.save(patient);
+			return "redirect:patient/login";
+		}
+	}
 
-        if (bindingResult.hasErrors()) {
-            return "patient_register";
-        } else {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String encodedPassword = passwordEncoder.encode(patient.getPassword());
-            patient.setPassword(encodedPassword);
-            patientService.save(patient);
-            return "redirect:patient/login";
-        }
-    }
+	/*-------------------------- PATIENT (SIGNED IN) --------------------------*/
+	@RequestMapping("/patient/login")
+	public String patientLogInPage(Patient patient) {
 
-     /*-------------------------- PATIENT (SIGNED IN) --------------------------*/
-     @RequestMapping("/patient/login")
-     public String patientLogInPage(Patient patient) {
- 
-         return "patient_login";
-     }
- 
+		return "patient_login";
+	}
 
-    /*-------------------------- PATIENT (SIGNED IN) --------------------------*/
-    @RequestMapping("/patient/homepage")
-    public String welcomePatient(Patient patient) {
+	/*-------------------------- PATIENT (SIGNED IN) --------------------------*/
+	@RequestMapping("/patient/homepage")
+	public String welcomePatient(Patient patient) {
 
-        return "patient_homepage";
-    }
+		return "patient_homepage";
+	}
 
-    /*---- VIEW ALL PATIENT TICKETS ----*/
-    @RequestMapping("/view_patient_tickets")
-    public String listPatientTickets(Model model) {
-        List<HealthTicket> listPatientTickets = healthTicketService.findAll();
-        model.addAttribute("listPatientTickets", listPatientTickets);
-        return "templatePlaceholder";
-    }
+	/*---- VIEW ALL PATIENT TICKETS ----*/
+	@RequestMapping("/view_patient_tickets")
+	public String listPatientTickets(Model model) {
+		List<HealthTicket> listPatientTickets = healthTicketService.findAll();
+		model.addAttribute("listPatientTickets", listPatientTickets);
+		return "templatePlaceholder";
+	}
 
-    /*---- ADD PATIENT TICKET ----*/
-    @RequestMapping("/view_patient_tickets/add_ticket")
-    public String addPatientTicket(Patient patient) {
+	/*---- ADD PATIENT TICKET ----*/
+	@RequestMapping("/view_patient_tickets/add_ticket")
+	public String addPatientTicket(Patient patient) {
 
-        return "templatePlaceholder";
-    }
+		return "templatePlaceholder";
+	}
 
-    /*---- PROCESS ADDED PATIENT TICKET ----*/
-    @PostMapping("/view_patient_tickets/process_ticket")
-    public String processTeacher(@Valid HealthTicket healthTicket, BindingResult bindingResult) {
+	/*---- PROCESS ADDED PATIENT TICKET ----*/
+	@PostMapping("/view_patient_tickets/process_ticket")
+	public String processTeacher(@Valid HealthTicket healthTicket, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            return "templatePlaceholder";
+		if (bindingResult.hasErrors()) {
+			return "templatePlaceholder";
 
-        } else {
-            healthTicketService.save(healthTicket);
-            return "redirect:view_patient_tickets";
-        }
-    }
+		} else {
+			healthTicketService.save(healthTicket);
+			return "redirect:view_patient_tickets";
+		}
+	}
 
-    /*---- DELETE PATIENT TICKET ----*/
-    @RequestMapping("/view_patient_tickets/delete/{id}")
-    public String deletePatientTicket(@PathVariable(name = "id") int id) {
-        healthTicketService.delete(id);
-        return "redirect:/view_patient_tickets";
-    }
+	/*---- DELETE PATIENT TICKET ----*/
+	@RequestMapping("/view_patient_tickets/delete/{id}")
+	public String deletePatientTicket(@PathVariable(name = "id") int id) {
+		healthTicketService.delete(id);
+		return "redirect:/view_patient_tickets";
+	}
 
-    /*---- EDIT PATIENT TICKET ----*/
-    @RequestMapping("/view_patient_tickets/edit/{id}")
-    public ModelAndView showEditPatientTicket(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("templatePlaceholder");
-        HealthTicket healthTicket = healthTicketService.get(id);
-        mav.addObject("healthTicket", healthTicket);
-        return mav;
-    }
+	/*---- EDIT PATIENT TICKET ----*/
+	@RequestMapping("/view_patient_tickets/edit/{id}")
+	public ModelAndView showEditPatientTicket(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("templatePlaceholder");
+		HealthTicket healthTicket = healthTicketService.get(id);
+		mav.addObject("healthTicket", healthTicket);
+		return mav;
+	}
 
-    /*---- PROCESS EDITED PATIENT TICKET ----*/
-    @PostMapping("/view_patient_tickets/process_update_ticket")
-    public String processUpdateTicket(@Valid HealthTicket healthTicket, BindingResult bindingResult) {
+	/*---- PROCESS EDITED PATIENT TICKET ----*/
+	@PostMapping("/view_patient_tickets/process_update_ticket")
+	public String processUpdateTicket(@Valid HealthTicket healthTicket, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            return "templatePlaceholder";
+		if (bindingResult.hasErrors()) {
+			return "templatePlaceholder";
 
-        } else {
-            healthTicketService.save(healthTicket);
-            return "redirect:view_patient_tickets";
-        }
-    }
+		} else {
+			healthTicketService.save(healthTicket);
+			return "redirect:view_patient_tickets";
+		}
+	}
 }
