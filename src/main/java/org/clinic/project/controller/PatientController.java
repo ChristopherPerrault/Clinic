@@ -1,6 +1,5 @@
 package org.clinic.project.controller;
 
-import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.clinic.project.model.CustomPatientDetails;
-import org.clinic.project.model.HealthTicket;
 import org.clinic.project.model.Patient;
 import org.clinic.project.service.HealthTicketService;
 import org.clinic.project.service.PatientService;
@@ -67,7 +65,7 @@ public class PatientController {
 
 		return "patient_login";
 	}
-	
+
 	@RequestMapping("/patient/logout")
 	public String patientLogoutPage(Patient patient) {
 
@@ -93,7 +91,7 @@ public class PatientController {
 		mav.addObject("patient", patient);
 		return mav;
 	}
-	
+
 	/*---- PROCESS ACCOUNT EDIT ----*/
 	@PostMapping("/process_patient_edit")
 	public String processAccountUpdate(@Valid Patient patient, BindingResult bindingResult) {
@@ -115,72 +113,72 @@ public class PatientController {
 			return "redirect:/patient/homepage";
 		}
 	}
-	
+
 	/*---- DELETE ACCOUNT ----*/
 	@RequestMapping("/delete/{patientID}")
 	public String deletePatient(@PathVariable(name = "patientID") String patientID) {
 		patientService.delete(patientID);
 		return "redirect:/patient/logout";
 	}
-	
-	
-	
-	
+
 	/*-------------------------- PATIENT TICKETS --------------------------*/
 	/*---- VIEW ALL PATIENT TICKETS ----*/
-//	@RequestMapping("/view_patient_tickets")
-//	public String listPatientTickets(Model model) {
-//		List<HealthTicket> listPatientTickets = healthTicketService.findAll();
-//		model.addAttribute("listPatientTickets", listPatientTickets);
-//		return "templatePlaceholder";
-//	}
+	// @RequestMapping("/view_patient_tickets")
+	// public String listPatientTickets(Model model) {
+	// List<HealthTicket> listPatientTickets = healthTicketService.findAll();
+	// model.addAttribute("listPatientTickets", listPatientTickets);
+	// return "templatePlaceholder";
+	// }
 
 	/*---- ADD PATIENT TICKET ----*/
-//	@RequestMapping("/view_patient_tickets/add_ticket")
-//	public String addPatientTicket(Patient patient) {
-//
-//		return "templatePlaceholder";
-//	}
+	// @RequestMapping("/view_patient_tickets/add_ticket")
+	// public String addPatientTicket(Patient patient) {
+	//
+	// return "templatePlaceholder";
+	// }
 
 	/*---- PROCESS ADDED PATIENT TICKET ----*/
-//	@PostMapping("/view_patient_tickets/process_ticket")
-//	public String processTeacher(@Valid HealthTicket healthTicket, BindingResult bindingResult) {
-//
-//		if (bindingResult.hasErrors()) {
-//			return "templatePlaceholder";
-//
-//		} else {
-//			healthTicketService.save(healthTicket);
-//			return "redirect:view_patient_tickets";
-//		}
-//	}
+	// @PostMapping("/view_patient_tickets/process_ticket")
+	// public String processTeacher(@Valid HealthTicket healthTicket, BindingResult
+	// bindingResult) {
+	//
+	// if (bindingResult.hasErrors()) {
+	// return "templatePlaceholder";
+	//
+	// } else {
+	// healthTicketService.save(healthTicket);
+	// return "redirect:view_patient_tickets";
+	// }
+	// }
 
 	/*---- DELETE PATIENT TICKET ----*/
-//	@RequestMapping("/view_patient_tickets/delete/{id}")
-//	public String deletePatientTicket(@PathVariable(name = "id") int id) {
-//		healthTicketService.delete(id);
-//		return "redirect:/view_patient_tickets";
-//	}
+	// @RequestMapping("/view_patient_tickets/delete/{id}")
+	// public String deletePatientTicket(@PathVariable(name = "id") int id) {
+	// healthTicketService.delete(id);
+	// return "redirect:/view_patient_tickets";
+	// }
 
 	/*---- EDIT PATIENT TICKET ----*/
-//	@RequestMapping("/view_patient_tickets/edit/{id}")
-//	public ModelAndView showEditPatientTicket(@PathVariable(name = "id") int id) {
-//		ModelAndView mav = new ModelAndView("templatePlaceholder");
-//		HealthTicket healthTicket = healthTicketService.get(id);
-//		mav.addObject("healthTicket", healthTicket);
-//		return mav;
-//	}
+	// @RequestMapping("/view_patient_tickets/edit/{id}")
+	// public ModelAndView showEditPatientTicket(@PathVariable(name = "id") int id)
+	// {
+	// ModelAndView mav = new ModelAndView("templatePlaceholder");
+	// HealthTicket healthTicket = healthTicketService.get(id);
+	// mav.addObject("healthTicket", healthTicket);
+	// return mav;
+	// }
 
 	/*---- PROCESS EDITED PATIENT TICKET ----*/
-//	@PostMapping("/view_patient_tickets/process_update_ticket")
-//	public String processUpdateTicket(@Valid HealthTicket healthTicket, BindingResult bindingResult) {
-//
-//		if (bindingResult.hasErrors()) {
-//			return "templatePlaceholder";
-//
-//		} else {
-//			healthTicketService.save(healthTicket);
-//			return "redirect:view_patient_tickets";
-//		}
-//	}
+	// @PostMapping("/view_patient_tickets/process_update_ticket")
+	// public String processUpdateTicket(@Valid HealthTicket healthTicket,
+	// BindingResult bindingResult) {
+	//
+	// if (bindingResult.hasErrors()) {
+	// return "templatePlaceholder";
+	//
+	// } else {
+	// healthTicketService.save(healthTicket);
+	// return "redirect:view_patient_tickets";
+	// }
+	// }
 }

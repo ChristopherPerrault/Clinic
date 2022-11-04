@@ -10,9 +10,6 @@
         }
     </style>
 </head>
-<!--! ---------------------- -->
-<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
-<!--! ---------------------- -->
 
 <body>
     <div>
@@ -77,7 +74,6 @@
                     <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
                 </tr>
                 <tr>
-                    <!-- for now it's a type text but I'll change this to textarea once figured out, seems to be an issue in thymeleaf -->
                     <td>Pre-Existing Medical Conditions:</td>
                     <td>
                         <input type="text" th:field="*{medicalConditions}" />

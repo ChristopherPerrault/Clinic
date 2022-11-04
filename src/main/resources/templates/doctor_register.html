@@ -1,83 +1,78 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="utf-8" />
-<title>Clinic | Register New Doctor</title>
-<style>
-span {
-	color: red;
-}
-</style>
+	<meta charset="utf-8" />
+	<title>Clinic | Register New Doctor</title>
+	<style>
+		span {
+			color: red;
+		}
+	</style>
 </head>
-<!--! ---------------------- -->
-<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
-<!--! ---------------------- -->
 
 <body>
 	<div>
 		<h2>Doctor Registration Form</h2>
 		<br />
-		<form action="#" th:action="@{/process_doctor_register}"
-			th:object="${doctor}" method="POST">
+		<form action="#" th:action="@{/process_doctor_register}" th:object="${doctor}" method="POST">
 			<table>
 				<tr>
 					<td>Doctor ID:</td>
 					<td>
-					<input type="text" th:field="*{doctorID}" />
-					<span th:if="${#fields.hasErrors('doctorID')}" th:errors="*{doctorID}"></span>
+						<input type="text" th:field="*{doctorID}" />
+						<span th:if="${#fields.hasErrors('doctorID')}" th:errors="*{doctorID}"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>Enter a Password:</td>
 					<td>
-					<input type="password" th:field="*{plainPassword}" />
-					<span th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></span>
+						<input type="password" th:field="*{plainPassword}" />
+						<span th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>Retype Password:</td>
 					<td>
-					<input type="password" th:field="*{password}" />
-					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+						<input type="password" th:field="*{password}" />
+						<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
 					<td>
-					<input type="text" th:field="*{firstName}" />
-					<span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+						<input type="text" th:field="*{firstName}" />
+						<span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
 					<td>
-					<input type="text" th:field="*{lastName}" />
-					<span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+						<input type="text" th:field="*{lastName}" />
+						<span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>Email:</td>
 					<td>
-					<input type="text" th:field="*{email}" />
-					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+						<input type="text" th:field="*{email}" />
+						<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>Date of Birth:</td>
 					<td>
-					<input type="date" th:field="*{dob}" />
-					<span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+						<input type="date" th:field="*{dob}" />
+						<span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
 					</td>
 				</tr>
 				<tr>
-                    <td>Sex:</td>
-                    <td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
-                    <td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
-                    <td><input type="radio" th:field="*{sex}" value="Unspecified" />Prefer not to say</td>
-                    <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
-                </tr>
+					<td>Sex:</td>
+					<td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
+					<td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
+					<td><input type="radio" th:field="*{sex}" value="Unspecified" />Prefer not to say</td>
+					<td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
+				</tr>
 				<tr>
 					<td><button type="submit">Register</button></td>
 				</tr>
