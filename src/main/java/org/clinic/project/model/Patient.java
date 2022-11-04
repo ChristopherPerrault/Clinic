@@ -111,6 +111,14 @@ public class Patient {
         this.medicalConditions = medicalConditions;
     }
 
+    public List<HealthTicket> getHealthtickets() {
+        return healthtickets;
+    }
+
+    public void setHealthtickets(List<HealthTicket> healthtickets) {
+        this.healthtickets = healthtickets;
+    }
+    
     @Override
     public String toString() {
         return "Patient [patientID=" + patientID + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
