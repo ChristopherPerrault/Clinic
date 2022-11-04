@@ -51,4 +51,8 @@ public class CustomPatientDetails implements UserDetails {
     public String getFullName() {
         return patient.getFirstName() + patient.getLastName();
     }
+
+    public String getPatientID() {
+        return patient.getPatientID();
+    }
 }

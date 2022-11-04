@@ -80,7 +80,7 @@
                     <!-- for now it's a type text but I'll change this to textarea once figured out, seems to be an issue in thymeleaf -->
                     <td>Pre-Existing Medical Conditions:</td>
                     <td>
-                        <input type="textbox" th:field="*{medicalConditions}" />
+                        <input type="text" th:field="*{medicalConditions}" />
                         <span th:if="${#fields.hasErrors('medicalConditions')}" th:errors="*{medicalConditions}"></span>
                     </td>
                 </tr>

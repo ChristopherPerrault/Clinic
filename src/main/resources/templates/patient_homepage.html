@@ -9,23 +9,40 @@
 <body>
     <div>
         <div>
-            <form th:action="@{/patient_homepage}" th:object="${patient}" method="POST">
-                <h3>
-                    Welcome (firstname lastname)
-                </h3>
-                <h2>What can we help you with today?</h2>
-                <br>
-
-                <h3><a th:href="@{/patient_add_ticket}">Consult a Doctor</a></h3>
+        <h3><a th:href="@{/patient_add_ticket}">Consult a Doctor</a></h3>
                 <br>
                 <h3><a th:href="@{/patient_view_tickets}">View Your Health Tickets</a></h3>
-                <br>
-                <h3><a th:href="@{'/patient_edit/' + ${patient.patientID}}">Manage Your Account </a></h3>
-                <br>
-                <br>
-                <h3><a th:href="@{/logged_out}">Log Out</a></h3>
-            </form>
+            
+            <table class="table table-striped table-bordered"  th:object="${patient}">
+				<thead class="thead-dark">
+					<tr>
+						<th>Patient ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>E-mail</th>
+						<th>Date of Birth</th>
+						<th>Sex</th>
+						<th>Medical Conditions</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${patient.patientID}"></td>
+						<td th:text="${patient.firstName}"></td>
+						<td th:text="${patient.lastName}"></td>
+						<td th:text="${patient.email}"></td>
+						<td th:text="${patient.dob}"></td>
+						<td th:text="${patient.sex}"></td>
+						<td th:text="${patient.medicalConditions}"></td>
+						<td><a id="link" th:href="@{'/patient_edit/' + ${patient.patientID}}">Edit</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<h3><a th:href="@{/patient/logout}">Log Out</a></h3>
         </div>
+      </div> 
+        
 
 </body>
 

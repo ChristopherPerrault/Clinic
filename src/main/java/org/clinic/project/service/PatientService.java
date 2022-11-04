@@ -19,6 +19,11 @@ public class PatientService {
     public List<Patient> findAll() {
         return patientRepo.findAll();
     }
+    
+    // GET LOGGED IN PATIENT
+    public Patient getLoggedInPatient(String patientID) {
+    	return patientRepo.findByPatientID(patientID);
+    }
 
     // READ BY ID
     public Patient get(String patientID) {

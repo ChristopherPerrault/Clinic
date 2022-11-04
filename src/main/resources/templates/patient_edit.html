@@ -1,55 +1,86 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Clinic | Edit Patient</title>
+<meta charset="utf-8" />
+<title>Clinic | Edit Patient</title>
+<style>
+span {
+	color: red;
+}
+</style>
 </head>
 
 <body>
-    <div>
-        <h2>Edit Your Patient Account</h2>
-        <br />
-        <form action="#" th:action="@{/process_patient_edit}" th:object="${patient}" method="POST">
-            <table>
-                <tr>
-                    <td>First Name:</td>
-                    <td><input type="text" th:field="*{firstName}" /></td>
-                </tr>
-                <tr>
-                    <td>Last Name:</td>
-                    <td><input type="text" th:field="*{lastName}" /></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" th:field="*{email}" /></td>
-                </tr>
-                <tr>
-                    <td>Enter a new Password:</td>
-                    <td><input type="password" th:field="*{password}" /></td>
-                </tr>
-                <tr>
-                    <td>Date of Birth:</td>
-                    <td><input type="date" th:field="*{dob}" /></td>
-                </tr>
-                <tr>
-                    <td>Sex:</td>
-                    <td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
-                    <td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
-                    <td><input type="radio" th:field="*{sex}" value="Unspecified" />Prefer not to say</td>
-                    <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
-                </tr>
-                <tr>
-                    <!-- for now it's a type text but I'll change this to textarea once figured out, seems to be an issue in thymeleaf -->
-                    <td>Pre-Existing Medical Conditions:</td>
-                    <td><input type="text" th:field="*{medicalConditions}" /></td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Update</button> </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+	<div>
+		<h2>Edit Your Patient Account</h2>
+		<br />
+		<form action="#" th:action="@{/process_patient_edit}"
+			th:object="${patient}" method="POST">
+			<table>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" th:field="*{patientID}" readonly /></td>
+				</tr>
+				<tr>
+					<td>Enter a Password:</td>
+					<td><input type="password" th:field="*{plainPassword}" /> <span
+						th:if="${#fields.hasErrors('plainPassword')}"
+						th:errors="*{plainPassword}"></span></td>
+				</tr>
+				<tr>
+					<td>Retype Password:</td>
+					<td><input type="password" th:field="*{password}" /> <span
+						th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" th:field="*{firstName}" /> <span
+						th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" th:field="*{lastName}" /> <span
+						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type="text" th:field="*{email}" /> <span
+						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>Date of Birth:</td>
+					<td><input type="date" th:field="*{dob}" /> <span
+						th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span></td>
+				</tr>
+				<tr>
+					<td>Sex:</td>
+					<td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
+					<td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
+					<td><input type="radio" th:field="*{sex}" value="Unspecified" />Prefer
+						not to say</td>
+					<td><span th:if="${#fields.hasErrors('sex')}"
+						th:errors="*{sex}">Please select one</span></td>
+				</tr>
+				<tr>
+					<!-- for now it's a type text but I'll change this to textarea once figured out, seems to be an issue in thymeleaf -->
+					<td>Pre-Existing Medical Conditions:</td>
+					<td><input type="text" th:field="*{medicalConditions}" />
+						<span th:if="${#fields.hasErrors('medicalConditions')}"
+						th:errors="*{medicalConditions}"></span></td>
+				</tr>
+				<tr>
+					<td><a id="link" th:href="@{'/delete/' + ${patient.patientID}}"> Permanently Delete My Account</a></td>
+					<td><button type="submit">Update</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 
 </html>
