@@ -48,15 +48,23 @@ public class PatientController {
             String encodedPassword = passwordEncoder.encode(patient.getPassword());
             patient.setPassword(encodedPassword);
             patientService.save(patient);
-            return "redirect:/login";
+            return "redirect:patient/login";
         }
     }
 
+     /*-------------------------- PATIENT (SIGNED IN) --------------------------*/
+     @RequestMapping("/patient/login")
+     public String patientLogInPage(Patient patient) {
+ 
+         return "patient_login";
+     }
+ 
+
     /*-------------------------- PATIENT (SIGNED IN) --------------------------*/
-    @RequestMapping("/patient_homepage")
+    @RequestMapping("/patient/homepage")
     public String welcomePatient(Patient patient) {
 
-        return "templatePlaceholder";
+        return "patient_homepage";
     }
 
     /*---- VIEW ALL PATIENT TICKETS ----*/

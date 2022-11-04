@@ -50,4 +50,12 @@ public class DoctorController {
     public String viewDoctorloginpage() {
         return "doctor_login";
     }
+
+     /*-------------------------- Doctor (SIGNED IN) --------------------------*/
+     @RequestMapping("/doctor/homepage")
+     public String welcomePatient(Doctor doctor) {
+ 
+         return "doctor_homepage";
+     }
+ 
 }
