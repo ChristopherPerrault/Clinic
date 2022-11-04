@@ -131,14 +131,12 @@ public class PatientController {
 	}
 	// view/edit patient account
 
-	@GetMapping("/patient/process_patient_edit")
-	public String showPatientAccountDetails(Model model) {
-		// List<Patient> listDetailPatients = patientService.get(ID);
-
-		return "/patient/patient_edit";
+	@GetMapping("/patient_edit")
+	public String showPatientAccountDetails(Patient patient) {
+		return "patient_edit";
 	}
 
-	@RequestMapping("/edit/{patientID}")
+	@RequestMapping("/patient_edit/{patientID}")
 	public ModelAndView showEditUserPage(@PathVariable(name = "patientID") String patientID) {
 		ModelAndView mav = new ModelAndView("patient_edit");
 		Patient patient = patientService.get(patientID);

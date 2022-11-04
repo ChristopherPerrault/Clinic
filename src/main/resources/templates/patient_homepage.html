@@ -9,7 +9,7 @@
 <body>
     <div>
         <div>
-            <form th:action="@{/patient_homepage}" method="POST">
+            <form th:action="@{/patient_homepage}" th:object="${patient}" method="POST">
                 <h3>
                     Welcome (firstname lastname)
                 </h3>
@@ -20,8 +20,7 @@
                 <br>
                 <h3><a th:href="@{/patient_view_tickets}">View Your Health Tickets</a></h3>
                 <br>
-                <h3><a th:href="@{/patient_edit}">Manage Your Account </a></h3>
-                <!-- remember, basic stuff just to get rolling. "Manage" likely belongs in a nav bar, for example -->
+                <h3><a th:href="@{'/patient_edit/' + ${patient.patientID}}">Manage Your Account </a></h3>
                 <br>
                 <br>
                 <h3><a th:href="@{/logged_out}">Log Out</a></h3>
