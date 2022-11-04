@@ -128,9 +128,20 @@ public class Doctor {
         this.sex = sex;
     }
 
-    public static Object withUsername(String string) {
-        return null;
+    public List<HealthTicket> getHealthtickets() {
+        return healthtickets;
     }
 
+    public void setHealthtickets(List<HealthTicket> healthtickets) {
+        this.healthtickets = healthtickets;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor [doctorID=" + doctorID + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
+                + email + ", password=" + password + ", dob=" + dob + ", sex=" + sex + "]";
+    }
+
+    
     
 }
