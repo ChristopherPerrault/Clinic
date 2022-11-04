@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <td>Sex:</td>
-                    <td><input type="radio" th:field="*{sex}" value="Female" />Male</td>
+                    <td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
                     <td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
                     <td><input type="radio" th:field="*{sex}" value="Unspecified" />Prefer not to say</td>
                     <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
