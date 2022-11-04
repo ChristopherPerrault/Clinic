@@ -129,4 +129,26 @@ public class PatientController {
 			return "redirect:view_patient_tickets";
 		}
 	}
+	// view/edit patient account
+
+	@GetMapping("/patient/process_patient_edit")
+	public String showPatientAccountDetails(Model model) {
+		// List<Patient> listDetailPatients = patientService.get(ID);
+
+		return "/patient/patient_edit";
+	}
+
+	@RequestMapping("/edit/{patientID}")
+	public ModelAndView showEditUserPage(@PathVariable(name = "patientID") String patientID) {
+		ModelAndView mav = new ModelAndView("patient_edit");
+		Patient patient = patientService.get(patientID);
+		mav.addObject("patient", patient);
+		return mav;
+	}
+
+	@RequestMapping("/delete/{patientID}")
+	public String deletePatient(@PathVariable(name = "patientID") String patientID) {
+		patientService.delete(patientID);
+		return "redirect:/";
+	}
 }
