@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <title>Clinic | Register New Patient</title>
+    <style>
+        span {
+            color: red;
+        }
+    </style>
 </head>
 <!--! ---------------------- -->
 <!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
@@ -17,36 +22,67 @@
             <table>
                 <tr>
                     <td>Patient ID:</td>
-                    <td><input type="text" th:field="*{patientID}" /></td>
-                </tr>
-                <tr>
-                    <td>First Name:</td>
-                    <td><input type="text" th:field="*{firstName}" /></td>
-                </tr>
-                <tr>
-                    <td>Last Name:</td>
-                    <td><input type="text" th:field="*{lastName}" /></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" th:field="*{email}" /></td>
+                    <td>
+                        <input type="text" th:field="*{patientID}" />
+                        <span th:if="${#fields.hasErrors('patientID')}" th:errors="*{patientID}"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Enter a Password:</td>
-                    <td><input type="password" th:field="*{password}" /></td>
+                    <td>
+                        <input type="password" th:field="*{plainPassword}" />
+                        <span th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Retype Password:</td>
+                    <td>
+                        <input type="password" th:field="*{password}" />
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input type="text" th:field="*{firstName}" />
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input type="text" th:field="*{lastName}" />
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" th:field="*{email}" />
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Date of Birth:</td>
-                    <td><input type="date" th:field="*{dob}" /></td>
+                    <td>
+                        <input type="date" th:field="*{dob}" />
+                        <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Sex:</td>
-                    <td><input type="text" th:field="*{sex}" /></td>
+                    <td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
+                    <td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
+                    <td><input type="radio" th:field="*{sex}" value="Unspecified" />Prefer not to say</td>
+                    <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
                 </tr>
                 <tr>
                     <!-- for now it's a type text but I'll change this to textarea once figured out, seems to be an issue in thymeleaf -->
                     <td>Pre-Existing Medical Conditions:</td>
-                    <td><input type="textbox" th:field="*{medicalConditions}" /></td>
+                    <td>
+                        <input type="textbox" th:field="*{medicalConditions}" />
+                        <span th:if="${#fields.hasErrors('medicalConditions')}" th:errors="*{medicalConditions}"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td><button type="submit">Register</button> </td>
