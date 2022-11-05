@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="utf-8" />
-    <title>Clinic | Update Doctor</title>
-</head>
+<head th:replace="fragments :: head">
 
 <body>
+    <div th:replace="fragments :: header"></div>
     <div>
         <h2>Update Your Doctor Account Details:</h2>
         <br />
@@ -45,6 +43,7 @@
             </table>
         </form>
     </div>
+    <div th:replace="fragments :: footer"></div>
 </body>
 
 </html>

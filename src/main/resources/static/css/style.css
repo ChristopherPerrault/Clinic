@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+span {
+  color: rgb(121, 16, 16);
+}
+
+.header {
+  font-family: "Courier New", Courier, monospace;
+  color: blueviolet;
+}
+
+.footer {
+  font-family: monospace;
+  font-size: 16px;
+  color: black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer img {
+  height: 16px;
+}

@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<meta charset="utf-8" />
-	<title>Clinic | Register New Doctor</title>
-	<style>
-		span {
-			color: red;
-		}
-	</style>
-</head>
+<head th:replace="fragments :: head">
 
 <body>
+	<div th:replace="fragments :: header"></div>
 	<div>
 		<h2>Doctor Registration Form</h2>
 		<br />
@@ -79,6 +72,7 @@
 			</table>
 		</form>
 	</div>
+	<div th:replace="fragments :: footer"></div>
 </body>
 
 </html>

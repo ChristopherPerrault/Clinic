@@ -1,26 +1,25 @@
-<head>
-    <meta charset="utf-8" />
-    <title>Clinic | Add a Diagnosis</title>
-</head>
-<!--! ---------------------- -->
-<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
-<!--! ---------------------- -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head">
 
 <body>
+    <div th:replace="fragments :: header"></div>
     <div>
         <h2>Health Ticket Add Diagnosis Form</h2>
         <br />
-        <form action="#" th:action="@{'/doctor/processTicket/' + ${ticketID}}" th:object="${healthTicket}" method="POST">
+        <form action="#" th:action="@{'/doctor/processTicket/' + ${ticketID}}" th:object="${healthTicket}"
+            method="POST">
             <table>
-                <tr >
+                <tr>
                     <td>Patient ID:</td>
-                    <td><input type="text" th:field="*{patientID}" readonly/></td>
+                    <td><input type="text" th:field="*{patientID}" readonly /></td>
                 </tr>
-                <tr >
+                <tr>
                     <td>Symptoms:</td>
-                    <td><input type="text" th:field="*{symptoms}" readonly/></td>
+                    <td><input type="text" th:field="*{symptoms}" readonly /></td>
                 </tr>
-                <tr >
+                <tr>
                     <td>Diagnosis:</td>
                     <td><input type="text" th:field="*{diagnosis}" /></td>
                 </tr>
@@ -30,6 +29,7 @@
             </table>
         </form>
     </div>
+    <div th:replace="fragments :: footer"></div>
 </body>
 
 </html>
