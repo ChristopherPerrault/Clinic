@@ -1,14 +1,9 @@
 package org.clinic.project.model;
 
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -62,10 +57,6 @@ public class Patient {
     @Size(max = 300)
     @Column(nullable = true, length = 300, name = "medical_conditions")
     private String medicalConditions;
-
-    @OneToMany(targetEntity = HealthTicket.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "patientID", referencedColumnName = "patientID")
-    private List<HealthTicket> healthtickets;
 
     public String getPatientID() {
         return patientID;
@@ -138,20 +129,10 @@ public class Patient {
     public void setMedicalConditions(String medicalConditions) {
         this.medicalConditions = medicalConditions;
     }
-
-    public List<HealthTicket> getHealthtickets() {
-        return healthtickets;
-    }
-
-    public void setHealthtickets(List<HealthTicket> healthtickets) {
-        this.healthtickets = healthtickets;
-    }
     
     @Override
     public String toString() {
-        return "Patient [patientID=" + patientID + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-                + email + ", password=" + password + ", dob=" + dob + ", sex=" + sex + ", medicalConditions="
-                + medicalConditions + "]";
+        return patientID;
     }
 
 }

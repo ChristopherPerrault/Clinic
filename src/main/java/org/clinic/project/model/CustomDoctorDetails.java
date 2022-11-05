@@ -51,4 +51,8 @@ public class CustomDoctorDetails implements UserDetails {
     public String getName() {
         return doctor.getFirstName() + doctor.getLastName();
     }
+
+    public String getDoctorID() {
+        return doctor.getDoctorID();
+    }
 }

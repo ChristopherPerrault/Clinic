@@ -75,7 +75,7 @@ span {
 						th:errors="*{medicalConditions}"></span></td>
 				</tr>
 				<tr>
-					<td><a id="link" th:href="@{'/delete/' + ${patient.patientID}}"> Permanently Delete My Account</a></td>
+					<td><a id="link" th:href="@{'/patient/delete/' + ${patient.patientID}}"> Permanently Delete My Account</a></td>
 					<td><button type="submit">Update</button></td>
 				</tr>
 			</table>

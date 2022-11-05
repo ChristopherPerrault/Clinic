@@ -9,9 +9,9 @@
 <body>
     <div>
         <div>
-        <h3><a th:href="@{/patient_add_ticket}">Consult a Doctor</a></h3>
+        <h3><a th:href="@{/patient/addTicket}">Consult a Doctor</a></h3>
                 <br>
-                <h3><a th:href="@{/patient_view_tickets}">View Your Health Tickets</a></h3>
+                <h3><a th:href="@{/patient/viewTickets}">View Your Health Tickets</a></h3>
             
             <table class="table table-striped table-bordered"  th:object="${patient}">
 				<thead class="thead-dark">
@@ -35,7 +35,7 @@
 						<td th:text="${patient.dob}"></td>
 						<td th:text="${patient.sex}"></td>
 						<td th:text="${patient.medicalConditions}"></td>
-						<td><a id="link" th:href="@{'/patient_edit/' + ${patient.patientID}}">Edit</a></td>
+						<td><a id="link" th:href="@{'/patient/edit/' + ${patient.patientID}}">Edit</a></td>
 					</tr>
 				</tbody>
 			</table>

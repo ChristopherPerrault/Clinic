@@ -1,0 +1,35 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Clinic | Add a Diagnosis</title>
+</head>
+<!--! ---------------------- -->
+<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
+<!--! ---------------------- -->
+
+<body>
+    <div>
+        <h2>Health Ticket Add Diagnosis Form</h2>
+        <br />
+        <form action="#" th:action="@{'/doctor/processTicket/' + ${ticketID}}" th:object="${healthTicket}" method="POST">
+            <table>
+                <tr >
+                    <td>Patient ID:</td>
+                    <td><input type="text" th:field="*{patientID}" readonly/></td>
+                </tr>
+                <tr >
+                    <td>Symptoms:</td>
+                    <td><input type="text" th:field="*{symptoms}" readonly/></td>
+                </tr>
+                <tr >
+                    <td>Diagnosis:</td>
+                    <td><input type="text" th:field="*{diagnosis}" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Add Diagnosis</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

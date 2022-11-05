@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Clinic | Add a Ticket</title>
+</head>
+<!--! ---------------------- -->
+<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
+<!--! ---------------------- -->
+
+<body>
+    <div>
+        <h2>Health Ticket Creation Form</h2>
+        <br />
+        <form action="#" th:action="@{/patient/processTicket}" th:object="${healthTicket}" method="POST">
+            <table>
+                <tr >
+                    <td>Symptoms:</td>
+                    <td><input type="text" th:field="*{symptoms}" /></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Create Ticket</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

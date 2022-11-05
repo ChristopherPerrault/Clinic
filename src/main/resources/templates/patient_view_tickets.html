@@ -24,16 +24,16 @@
                 </thead>
                 <tbody>
 
-                    <tr th:each="healthticket: ${listHealthtickets}">
-                        <td th:text="${healthticket.ticketID}">Ticket ID</td>
-                        <td th:text="${healthticket.patientID}"><a th:href="@{'/doctor/view-patient/' + ${healthticket.patientID}}">Patient ID</a></td>
-                        <td th:text="${healthticket.symptoms}">Symptoms</td>
-                        <td th:text="${healthticket.diagnosis}">Diagnosis</td>
-                        <td th:text="${healthticket.doctorID}">Doctor ID</td>
-                        <td>
-                            <a th:href="@{'/doctor/edit-ticket/' + ${healthticket.ticketID}}">Add a Diagnosis</a>
+                    <tr th:each="healthTicket: ${healthTicketList}">
+                        <td th:text="${healthTicket.ticketID}">Ticket ID</td>
+                        <td th:text="${healthTicket.patientID}">Patient ID</td>
+                        <td th:text="${healthTicket.symptoms}">Symptoms</td>
+                        <td th:text="${healthTicket.diagnosis}">Diagnosis</td>
+                        <td th:text="${healthTicket.doctorID}">Doctor ID</td>
+                        <td th:if="${healthTicket.diagnosis == null}">
+                            <a th:href="@{'/patient/edit-ticket/' + ${healthTicket.ticketID}}">Edit Symptoms</a>
                             &nbsp;&nbsp;
-                            <a th:href="@{'/doctor/delete-ticket/' + ${healthticket.ticketID}}">Remove Ticket</a>
+                            <a th:href="@{'/patient/delete-ticket/' + ${healthTicket.ticketID}}">Cancel Ticket</a>
                         </td>
                     </tr>
                 </tbody>

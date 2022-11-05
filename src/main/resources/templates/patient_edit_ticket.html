@@ -1,0 +1,35 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Clinic | Update Your Symptoms </title>
+</head>
+<!--! ---------------------- -->
+<!-- basic, unstyled just to start, will add more later like errors, etc   -Chris -->
+<!--! ---------------------- -->
+
+<body>
+    <div>
+        <h2>Health Ticket Update Symptoms Form</h2>
+        <br />
+        <form action="#" th:action="@{'/patient/processTicket/' + ${ticketID}}" th:object="${healthTicket}" method="POST">
+            <table>
+                <tr >
+                    <td>Ticket ID:</td>
+                    <td><input type="text" th:field="*{ticketID}" readonly /></td>
+                </tr>
+                <tr >
+                    <td>Patient ID:</td>
+                    <td><input type="text" th:field="*{patientID}" readonly/></td>
+                </tr>
+                <tr >
+                    <td>Symptoms:</td>
+                    <td><input type="text" th:field="*{symptoms}"/></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Update Symptoms</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -26,6 +26,11 @@ public class DoctorService {
         return doctorRepo.findById(doctorID).get();
     }
 
+    // GET LOGGED IN PATIENT
+    public Doctor getLoggedInDoctor(String doctorID) {
+        return doctorRepo.findByDoctorID(doctorID);
+    }
+
     // CREATE
     public void save(Doctor doctor) {
         doctorRepo.save(doctor);

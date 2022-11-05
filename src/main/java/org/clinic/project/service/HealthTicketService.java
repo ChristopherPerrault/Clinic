@@ -6,8 +6,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import org.clinic.project.dao.HealthTicketRepository;
 import org.clinic.project.model.HealthTicket;
+import org.clinic.project.model.Patient;
 
 @Service
 @Transactional
@@ -26,6 +28,11 @@ public class HealthTicketService {
         return healthRepo.findById(ticketID).get();
     }
 
+     // READ BY ID
+     public List<HealthTicket> getByPatient(Patient patient) {
+        return healthRepo.findByPatientID(patient);
+    }
+
     // CREATE
     public void save(HealthTicket healthTicket) {
         healthRepo.save(healthTicket);
@@ -35,5 +42,11 @@ public class HealthTicketService {
     public void delete(int ticketID) {
         healthRepo.deleteById(ticketID);
     }
+
+    //update
+    public void update(HealthTicket healthTicket) {
+        healthTicket.setTicketID(healthTicket.getTicketID());
+        healthRepo.save(healthTicket);
+    } 
 }
 

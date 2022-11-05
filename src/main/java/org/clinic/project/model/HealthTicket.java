@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +15,15 @@ public class HealthTicket {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ticketID;
+    private int ticketID;
+    
+    @ManyToOne(targetEntity = Patient.class)
+    @JoinColumn(name = "patientID", referencedColumnName = "patientID")
+    public Patient patientID;
+
+    @ManyToOne(targetEntity = Doctor.class)
+    @JoinColumn(name = "doctorID", referencedColumnName = "doctorID")
+    public Doctor doctorID;
 
     @Column(nullable = true, length = 300, name = "symptoms")
     private String symptoms;
@@ -21,11 +31,11 @@ public class HealthTicket {
     @Column(nullable = true, length = 300, name = "diagnois")
     private String diagnosis;
 
-    public Long getTicketID() {
+    public int getTicketID() {
         return ticketID;
     }
 
-    public void setTicketID(Long ticketID) {
+    public void setTicketID(int ticketID) {
         this.ticketID = ticketID;
     }
 
@@ -44,6 +54,23 @@ public class HealthTicket {
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
     }
+
+    public Patient getPatientID() {
+        return patientID;
+    }
+
+    public void setPatientID(Patient patientID) {
+        this.patientID = patientID;
+    }
+
+    public Doctor getDoctorID() {
+        return doctorID;
+    }
+
+    public void setDoctorID(Doctor doctorID) {
+        this.doctorID = doctorID;
+    }
  
+    
     
 }
