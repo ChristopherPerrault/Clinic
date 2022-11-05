@@ -121,8 +121,12 @@ public class DoctorController {
 
     /*-------------------------- Doctor (SIGNED IN) --------------------------*/
     @RequestMapping("/doctor/homepage")
-    public String welcomePatient() {
-
+    public String welcomePatient(Model model) {
+        CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("pageTitle", "Patient Homepage");
         return "doctor_homepage";
     }
 
