@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+
 <head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>[[${pageTitle}]] | Clinic</title>
-    <link rel="stylesheet" th:href="@{css/style.css}">
-    <link rel="icon" th:href="@{images/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" th:href="@{/images/favicon.ico}">
 
     <meta name="keywords" content="clinic">
     <meta name="description" content="Programming III Project">
@@ -17,7 +18,7 @@
     <h1 class="header" th:fragment="header">HEADERRR</h1>
     <div class="footer" th:fragment="footer">
         <p>Made by THE REGEX ©2022 <a href="https://github.com/ChristopherPerrault/Clinic"
-                title="View Clinic on GitHub"><img th:src="@{images/GitHub-Mark-32px.png}"></a>
+                title="View Clinic on GitHub"><img th:src="@{/images/GitHub-Mark-32px.png}"></a>
         </p>
     </div>
 </body>

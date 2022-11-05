@@ -36,20 +36,25 @@ public class DoctorController {
     @RequestMapping("/doctor_register")
     public String showDoctorRegistrationForm(Model model) {
         model.addAttribute("doctor", new Doctor());
+        model.addAttribute("pageTitle", "Regsiter Doctor");
         return "doctor_register";
     }
 
     /*---- PROCESS REGISTER ----*/
     @PostMapping("/process_doctor_register")
-    public String processDoctorRegister(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult) {
+    public String processDoctorRegister(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult,
+            Model model) {
         if (doctor.getDob() == null) {
-            bindingResult.rejectValue("dob", "doctor.dob", "Birthday cannot be blank!");
+            model.addAttribute("pageTitle", "Registration Error");
+            bindingResult.rejectValue("dob", "doctor.dob", "Date of birth required");
             return "doctor_register";
         }
         if (!(doctor.getPlainPassword().contentEquals(doctor.getPassword()))) {
+            model.addAttribute("pageTitle", "Registration Error");
             bindingResult.rejectValue("password", "doctor.password", "Passwords do not match!");
         }
         if (bindingResult.hasErrors()) {
+            model.addAttribute("pageTitle", "Registration Error");
             return "doctor_register";
         } else {
             doctor.setPassword(doctor.getPlainPassword());
@@ -62,14 +67,15 @@ public class DoctorController {
     }
 
     @RequestMapping("/doctor/login")
-    public String viewDoctorloginpage() {
+    public String viewDoctorloginpage(Model model) {
+        model.addAttribute("pageTitle", "Doctor Log In");
         return "doctor_login";
     }
 
     /*-------------------------- Doctor (SIGNED IN) --------------------------*/
     @RequestMapping("/doctor/homepage")
-    public String welcomePatient() {
-
+    public String welcomeDoctor(Model model) {
+        model.addAttribute("pageTitle", "Doctor Homepage");
         return "doctor_homepage";
     }
 
@@ -78,21 +84,23 @@ public class DoctorController {
     public String viewTickets(Model model) {
         List<HealthTicket> listHealthtickets = healthTicketService.findAll();
         model.addAttribute("listHealthtickets", listHealthtickets);
-
+        model.addAttribute("pageTitle", "Doctor View Tickets");
         return "doctor_view_tickets";
     }
 
     @RequestMapping("/doctor/edit-ticket/{ticketID}")
-    public ModelAndView showDiagnosisPage(@PathVariable(name = "ticketID") int ticketID) {
+    public ModelAndView showDiagnosisPage(@PathVariable(name = "ticketID") int ticketID, Model model) {
         ModelAndView mav = new ModelAndView("doctor_edit_ticket");
         HealthTicket healthTicket = healthTicketService.get(ticketID);
         mav.addObject("healthTicket", healthTicket);
+        model.addAttribute("pageTitle", "Edit Ticket");
 
         return mav;
     }
 
     @PostMapping("/doctor/processTicket/{ticketID}")
-    public String processDiagnosis(@PathVariable(name = "ticketID")int ticketID,@ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
+    public String processDiagnosis(@PathVariable(name = "ticketID") int ticketID,
+            @ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
         CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
@@ -105,9 +113,9 @@ public class DoctorController {
     }
 
     /*---- DELETE TICKET ----*/
-	@RequestMapping("/doctor/delete-ticket/{ticketID}")
-	public String deletePatientTicket(@PathVariable(name = "ticketID") int ticketID) {
-		healthTicketService.delete(ticketID);
-		return "redirect:/doctor/viewTickets";
-	}
+    @RequestMapping("/doctor/delete-ticket/{ticketID}")
+    public String deletePatientTicket(@PathVariable(name = "ticketID") int ticketID) {
+        healthTicketService.delete(ticketID);
+        return "redirect:/doctor/viewTickets";
+    }
 }

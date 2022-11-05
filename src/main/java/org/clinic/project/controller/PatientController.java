@@ -44,15 +44,18 @@ public class PatientController {
 
 	/*---- PROCESS REGISTER ----*/
 	@PostMapping("/process_patient_register")
-	public String processPatientRegister(@Valid Patient patient, BindingResult bindingResult) {
+	public String processPatientRegister(@Valid Patient patient, BindingResult bindingResult, Model model) {
 		if (patient.getDob() == null) {
+			model.addAttribute("pageTitle", "Registration Error");
 			bindingResult.rejectValue("dob", "patient.dob", "Birthday cannot be blank!");
 			return "patient_register";
 		}
 		if (!(patient.getPlainPassword().contentEquals(patient.getPassword()))) {
+			model.addAttribute("pageTitle", "Registration Error");
 			bindingResult.rejectValue("password", "patient.password", "Passwords do not match!");
 		}
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("pageTitle", "Registration Error");
 			return "patient_register";
 		} else {
 			patient.setPassword(patient.getPlainPassword());
@@ -64,7 +67,6 @@ public class PatientController {
 		}
 	}
 
-	// ! the next 3 blocks include the dynamic title for testing
 	/*-------------------------- PATIENT (LOGIN && LOGOUT PAGE) --------------------------*/
 	@RequestMapping("/patient/login")
 	public String patientLogInPage(Patient patient, Model model) {
@@ -92,10 +94,11 @@ public class PatientController {
 
 	/*---- EDIT PATIENT ACCOUNT INFO----*/
 	@RequestMapping("/patient/edit/{patientID}")
-	public ModelAndView showEditUserPage(@PathVariable(name = "patientID") String patientID) {
+	public ModelAndView showEditUserPage(@PathVariable(name = "patientID") String patientID, Model model) {
 		ModelAndView mav = new ModelAndView("patient_edit");
 		Patient patient = patientService.get(patientID);
 		mav.addObject("patient", patient);
+		model.addAttribute("pageTitle", "Edit Account");
 		return mav;
 	}
 
@@ -103,7 +106,7 @@ public class PatientController {
 	@PostMapping("/process_patient_edit")
 	public String processAccountUpdate(@Valid Patient patient, BindingResult bindingResult) {
 		if (patient.getDob() == null) {
-			bindingResult.rejectValue("dob", "patient.dob", "Birthday cannot be blank!");
+			bindingResult.rejectValue("dob", "patient.dob", "Date of birth required");
 			return "patient_edit";
 		}
 		if (!(patient.getPlainPassword().contentEquals(patient.getPassword()))) {
@@ -136,6 +139,7 @@ public class PatientController {
 	@RequestMapping("/patient/addTicket")
 	public String addPatientTicket(Model model) {
 		model.addAttribute("healthTicket", new HealthTicket());
+		model.addAttribute("pageTitle", "Create Ticket");
 		return "patient_add_ticket";
 	}
 
@@ -161,15 +165,17 @@ public class PatientController {
 		List<HealthTicket> healthTicketList = healthTicketService.getByPatient(patient);
 
 		model.addAttribute("healthTicketList", healthTicketList);
+		model.addAttribute("pageTitle", "View Tickets");
 		return "patient_view_tickets";
 	}
 
 	/*---- EDIT PATIENT TICKET ----*/
 	@RequestMapping("/patient/edit-ticket/{ticketID}")
-	public ModelAndView showEditPatientTicket(@PathVariable(name = "ticketID") int ticketID) {
+	public ModelAndView showEditPatientTicket(@PathVariable(name = "ticketID") int ticketID, Model model) {
 		ModelAndView mav = new ModelAndView("patient_edit_ticket");
 		HealthTicket healthTicket = healthTicketService.get(ticketID);
 		mav.addObject("healthTicket", healthTicket);
+		model.addAttribute("pageTitle", "Edit Ticket");
 		return mav;
 	}
 
