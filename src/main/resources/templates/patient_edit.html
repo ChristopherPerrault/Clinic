@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments :: head">
-
+</head>
 <body>
 	<div th:replace="fragments :: header"></div>
 	<div>
@@ -11,7 +11,7 @@
 		<form action="#" th:action="@{/process_patient_edit}" th:object="${patient}" method="POST">
 			<table>
 				<tr>
-					<td>First Name:</td>
+					<td>Patient ID:</td>
 					<td><input type="text" th:field="*{patientID}" readonly /></td>
 				</tr>
 				<tr>

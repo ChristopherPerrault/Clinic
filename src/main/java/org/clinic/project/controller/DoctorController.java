@@ -72,10 +72,57 @@ public class DoctorController {
         return "doctor_login";
     }
 
+    /*---- EDIT Doctor ACCOUNT INFO----*/
+    @RequestMapping("/doctor/edit/{doctorID}")
+    public ModelAndView showEditUserPage(@PathVariable(name = "doctorID") String doctorID) {
+        ModelAndView mav = new ModelAndView("doctor_edit");
+        Doctor doctor = doctorService.get(doctorID);
+        mav.addObject("doctor", doctor);
+        return mav;
+    }
+
+    /*---- PROCESS ACCOUNT EDIT ----*/
+    @PostMapping("/process_doctor_edit")
+    public String processAccountUpdate(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult) {
+        if (doctor.getDob() == null) {
+            bindingResult.rejectValue("dob", "doctor.dob", "Birthday cannot be blank!");
+            return "doctor_edit";
+        }
+        if (!(doctor.getPlainPassword().contentEquals(doctor.getPassword()))) {
+            bindingResult.rejectValue("password", "doctor.password", "Passwords do not match!");
+        }
+        if (bindingResult.hasErrors()) {
+            return "doctor_edit";
+        } else {
+            doctor.setPassword(doctor.getPlainPassword());
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = passwordEncoder.encode(doctor.getPassword());
+            doctor.setPassword(encodedPassword);
+            doctorService.save(doctor);
+            return "redirect:/doctor/homepage";
+        }
+    }
+
+    /*---- DELETE ACCOUNT ----*/
+    @RequestMapping("/doctor/delete/{doctorID}")
+    public String deletePatient(@PathVariable(name = "doctorID") String doctorID) {
+        Doctor doctor = doctorService.get(doctorID);
+
+        healthTicketService.deleteAllByDoctorID(doctor);
+        doctorService.delete(doctorID);
+        return "redirect:/doctor/logout";
+    }
+
+    @RequestMapping("/doctor/logout")
+    public String patientLogoutPage(Model model) {
+        model.addAttribute("pageTitle", "Doctor Logged Out");
+        return "logged_out";
+    }
+
     /*-------------------------- Doctor (SIGNED IN) --------------------------*/
     @RequestMapping("/doctor/homepage")
-    public String welcomeDoctor(Model model) {
-        model.addAttribute("pageTitle", "Doctor Homepage");
+    public String welcomePatient() {
+
         return "doctor_homepage";
     }
 

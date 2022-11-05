@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments :: head">
-
+</head>
 <body>
     <div th:replace="fragments :: header"></div>
     <div>
@@ -14,10 +14,33 @@
                 <br>
                 <h3><a th:href="@{/doctor/viewTickets}">Consult Health Tickets</a></h3>
                 <br>
-                <h3><a th:href="@{/doctor_edit}">Manage Your Account </a></h3>
+                <table class="table table-striped table-bordered" th:object="${doctor}">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Doctor ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>E-mail</th>
+                            <th>Date of Birth</th>
+                            <th>Sex</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${doctor.doctorID}"></td>
+                            <td th:text="${doctor.firstName}"></td>
+                            <td th:text="${doctor.lastName}"></td>
+                            <td th:text="${doctor.email}"></td>
+                            <td th:text="${doctor.dob}"></td>
+                            <td th:text="${doctor.sex}"></td>
+                            <td><a id="link" th:href="@{'/doctor/edit/' + ${doctor.doctorID}}">Edit</a></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <br>
                 <br>
-                <h3><a th:href="@{/logged_out}">Log Out</a></h3>
+                <h3><a th:href="@{/doctor/logout}">Log Out</a></h3>
             </form>
         </div>
         <div th:replace="fragments :: footer"></div>
