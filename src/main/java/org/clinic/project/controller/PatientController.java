@@ -38,6 +38,7 @@ public class PatientController {
 	@GetMapping("/patient_register")
 	public String showPatientRegistrationForm(Model model) {
 		model.addAttribute("patient", new Patient());
+		model.addAttribute("pageTitle", "Register Patient");
 		return "patient_register";
 	}
 
@@ -63,16 +64,17 @@ public class PatientController {
 		}
 	}
 
+	// ! the next 3 blocks include the dynamic title for testing
 	/*-------------------------- PATIENT (LOGIN && LOGOUT PAGE) --------------------------*/
 	@RequestMapping("/patient/login")
-	public String patientLogInPage(Patient patient) {
-
+	public String patientLogInPage(Patient patient, Model model) {
+		model.addAttribute("pageTitle", "Patient Log In");
 		return "patient_login";
 	}
 
 	@RequestMapping("/patient/logout")
-	public String patientLogoutPage(Patient patient) {
-
+	public String patientLogoutPage(Patient patient, Model model) {
+		model.addAttribute("pageTitle", "Patient Logged Out");
 		return "logged_out";
 	}
 
@@ -84,6 +86,7 @@ public class PatientController {
 				.getPrincipal();
 		Patient patient = patientService.getLoggedInPatient(patientInfo.getPatientID());
 		model.addAttribute("patient", patient);
+		model.addAttribute("pageTitle", "Patient Homepage");
 		return "patient_homepage";
 	}
 
@@ -168,7 +171,8 @@ public class PatientController {
 	}
 
 	@PostMapping("/patient/processTicket/{ticketID}")
-	public String processDiagnosis(@PathVariable(name = "ticketID")int ticketID,@ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
+	public String processDiagnosis(@PathVariable(name = "ticketID") int ticketID,
+			@ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
 		CustomPatientDetails patientInfo = (CustomPatientDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		Patient patient = patientService.getLoggedInPatient(patientInfo.getPatientID());

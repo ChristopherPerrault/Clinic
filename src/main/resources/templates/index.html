@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="utf-8" />
-    <title>Clinic | Home</title>
-</head>
+<head th:replace="fragments :: head">
 
 <body>
+    <div th:replace="fragments :: header"></div>
     <div>
         <h3>Welcome</h3>
         <a href="/patient_register">Register as Patient</a>
@@ -17,6 +15,7 @@
         <br /><br />
         <a href="/doctor/login">Log in as a Doctor</a>
     </div>
+    <div th:replace="fragments :: footer"></div>
 </body>
 
 </html>

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="ISO-8859-1">
-    <title>Clinic | Health Tickets</title>
-</head>
+<head th:replace="fragments :: head">
 
 <body>
+    <div th:replace="fragments :: header"></div>
     <div>
         <div>
             <h1>Health Tickets</h1>
@@ -26,7 +24,8 @@
 
                     <tr th:each="healthticket: ${listHealthtickets}">
                         <td th:text="${healthticket.ticketID}">Ticket ID</td>
-                        <td th:text="${healthticket.patientID}"><a th:href="@{'/doctor/view-patient/' + ${healthticket.patientID}}">Patient ID</a></td>
+                        <td th:text="${healthticket.patientID}"><a
+                                th:href="@{'/doctor/view-patient/' + ${healthticket.patientID}}">Patient ID</a></td>
                         <td th:text="${healthticket.symptoms}">Symptoms</td>
                         <td th:text="${healthticket.diagnosis}">Diagnosis</td>
                         <td th:text="${healthticket.doctorID}">Doctor ID</td>
@@ -40,6 +39,7 @@
             </table>
         </div>
     </div>
+    <div th:replace="fragments :: footer"></div>
 </body>
 
 </html>

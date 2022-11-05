@@ -17,7 +17,7 @@ public class PatientSecurityConfig {
     public UserDetailsService customerUserDetailsService2() {
         return new CustomPatientDetailsService();
     }
- 
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder2() {
         return new BCryptPasswordEncoder();
@@ -28,28 +28,32 @@ public class PatientSecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(customerUserDetailsService2());
         authProvider.setPasswordEncoder(passwordEncoder2());
- 
+
         return authProvider;
     }
 
+    // ! CSS breaks once a user enters a patient or doctor URL and I can't figure
+    // ! out why.
+    // ! I have attempted many antMatchers here, looking into it. Possible a
+    // 'custom' fragment is needed for those logged in or a global security config.
     @Bean
     public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider2());
         http.antMatcher("/patient/**")
-            .authorizeRequests().anyRequest().authenticated()
-            .and()
-            .formLogin()
+                .authorizeRequests().anyRequest().authenticated()
+                .and()
+                .formLogin()
                 .loginPage("/patient/login")
                 .usernameParameter("patientID")
                 .loginProcessingUrl("/patient/login")
                 .defaultSuccessUrl("/patient/homepage")
                 .failureUrl("/patient/login?error")
                 .permitAll()
-            .and()
+                .and()
                 .logout()
-                    .logoutUrl("/patient/logout")
-                    .logoutSuccessUrl("/");
- 
+                .logoutUrl("/patient/logout")
+                .logoutSuccessUrl("/");
+
         return http.build();
     }
 }
