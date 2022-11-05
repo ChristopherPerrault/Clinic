@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments :: head">
-</head>
+
 <body>
     <div th:replace="fragments :: header"></div>
     <div>
@@ -11,9 +11,9 @@
         <form action="#" th:action="@{/process_doctor_edit}" th:object="${doctor}" method="POST">
             <table>
                 <tr>
-					<td>Doctor ID:</td>
-					<td><input type="text" th:field="*{doctorID}" readonly /></td>
-				</tr>
+                    <td>Doctor ID:</td>
+                    <td><input type="text" th:field="*{doctorID}" readonly /></td>
+                </tr>
                 <tr>
                     <td>First Name:</td>
                     <td><input type="text" th:field="*{firstName}" /> <span th:if="${#fields.hasErrors('firstName')}"
