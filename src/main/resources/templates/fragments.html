@@ -5,7 +5,7 @@
 <head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- Dynamic titles, each view takes in a generic Model and adds pageTitle as an attribute, which is the passed here, thus appearing correctly depending on which page you are viewing -->
     <title>[[${pageTitle}]] | Clinic</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="icon" th:href="@{/images/favicon.ico}">
@@ -15,7 +15,30 @@
 </head>
 
 <body>
-    <h1 class="header" th:fragment="header">HEADERRR</h1>
+    <!-- HEADER -->
+    <div class="navbar-container" th:fragment="header">
+        <nav class="nav">
+            <a href="/" title="Return to Home"><img th:src="@{/images/home-button-img.jpg}" class="img-home"></a>
+            <ul class="menu">
+                <li>Register
+                    <ul class="sub-menu">
+                        <!-- BUG: Register links work from Home but not from other pages -->
+                        <li><a href="patient_register" title="Register as Patient">as Patient</a></li>
+                        <li><a href="doctor_register" title="Register as Doctor">as Doctor</a></li>
+                    </ul>
+                </li>
+                <li>Log In
+                    <ul class="sub-menu">
+                        <li><a href="/patient/login" title="Log in as Patient">as Patient</a></li>
+                        <li><a href="/doctor/login" title="Log in as Doctor">as Doctor</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <!-- FOOTER -->
     <div class="footer" th:fragment="footer">
         <p>Made by THE REGEX ©2022 <a href="https://github.com/ChristopherPerrault/Clinic"
                 title="View Clinic on GitHub"><img th:src="@{/images/GitHub-Mark-32px.png}"></a>

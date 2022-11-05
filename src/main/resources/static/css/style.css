@@ -1,17 +1,73 @@
+/* Global */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style-type: none;
 }
 
+/* Errors */
 span {
-  color: rgb(121, 16, 16);
+  color: rgb(147, 20, 20);
 }
 
-.header {
-  font-family: "Courier New", Courier, monospace;
-  color: blueviolet;
+/* --- HEADER --- */
+
+.nav {
+  text-align: center;
 }
+
+.img-home {
+  height: 50px;
+  width: 50px;
+}
+
+.menu {
+  display: inline-block;
+}
+
+.menu > li {
+  float: left;
+  color: #000000;
+  width: 140px;
+  height: 40px;
+  line-height: 40px;
+  background: rgba(37, 107, 115, 0.7);
+  cursor: pointer;
+  font-size: 17px;
+}
+.sub-menu {
+  transform: scale(0);
+  transform-origin: top center;
+  transition: all 300ms ease-in-out;
+}
+.sub-menu li {
+  font-size: 14px;
+  background: rgba(33, 167, 172, 0.8);
+  padding: 6px;
+  transform: scale(0);
+  transform-origin: top center;
+  transition: all 300ms ease-in-out;
+}
+
+.sub-menu li:hover {
+  background: rgb(66, 140, 214);
+}
+
+.menu > li:hover .sub-menu li {
+  transform: scale(1);
+}
+
+.menu > li:hover .sub-menu {
+  transform: scale(1);
+}
+
+.sub-menu > li > a:link {
+  text-decoration: none;
+  color: #000000;
+}
+
+/* --- FOOTER --- */
 
 .footer {
   font-family: monospace;
@@ -27,5 +83,5 @@ span {
 }
 
 .footer img {
-  height: 16px;
+  height: 18px;
 }

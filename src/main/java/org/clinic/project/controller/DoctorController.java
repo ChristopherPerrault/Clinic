@@ -172,7 +172,7 @@ public class DoctorController {
                 .getPrincipal();
         Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
         healthTicket.setDoctorID(doctor);
-        
+
         LocalDate localdate = LocalDate.now();
         healthTicket.setDateSubmitted(localdate);
 
