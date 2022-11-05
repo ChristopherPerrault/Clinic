@@ -32,13 +32,12 @@ public class PatientSecurityConfig {
         return authProvider;
     }
 
-    // ! CSS breaks once a user enters a patient or doctor URL and I can't figure
-    // ! out why.
-    // ! I have attempted many antMatchers here, looking into it. Possible a
-    // 'custom' fragment is needed for those logged in or a global security config.
     @Bean
     public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider2());
+
+        http.authorizeRequests().antMatchers("/").permitAll();
+
         http.antMatcher("/patient/**")
                 .authorizeRequests().anyRequest().authenticated()
                 .and()

@@ -66,10 +66,61 @@ public class DoctorController {
         return "doctor_login";
     }
 
+    /*---- EDIT Doctor ACCOUNT INFO----*/
+    @RequestMapping("/doctor/edit/{doctorID}")
+    public ModelAndView showEditUserPage(@PathVariable(name = "doctorID") String doctorID) {
+        ModelAndView mav = new ModelAndView("doctor_edit");
+        Doctor doctor = doctorService.get(doctorID);
+        mav.addObject("doctor", doctor);
+        return mav;
+    }
+
+    /*---- PROCESS ACCOUNT EDIT ----*/
+    @PostMapping("/process_doctor_edit")
+    public String processAccountUpdate(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult) {
+        if (doctor.getDob() == null) {
+            bindingResult.rejectValue("dob", "doctor.dob", "Birthday cannot be blank!");
+            return "doctor_edit";
+        }
+        if (!(doctor.getPlainPassword().contentEquals(doctor.getPassword()))) {
+            bindingResult.rejectValue("password", "doctor.password", "Passwords do not match!");
+        }
+        if (bindingResult.hasErrors()) {
+            return "doctor_edit";
+        } else {
+            doctor.setPassword(doctor.getPlainPassword());
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = passwordEncoder.encode(doctor.getPassword());
+            doctor.setPassword(encodedPassword);
+            doctorService.save(doctor);
+            return "redirect:/doctor/homepage";
+        }
+    }
+
+    /*---- DELETE ACCOUNT ----*/
+	@RequestMapping("/doctor/delete/{doctorID}")
+	public String deletePatient(@PathVariable(name = "doctorID") String doctorID) {
+		Doctor doctor = doctorService.get(doctorID);
+
+		healthTicketService.deleteAllByDoctorID(doctor);
+		doctorService.delete(doctorID);
+		return "redirect:/doctor/logout";
+	}
+
+    @RequestMapping("/doctor/logout")
+    public String patientLogoutPage(Model model) {
+        model.addAttribute("pageTitle", "Doctor Logged Out");
+        return "logged_out";
+    }
+
     /*-------------------------- Doctor (SIGNED IN) --------------------------*/
     @RequestMapping("/doctor/homepage")
-    public String welcomePatient() {
-
+    public String welcomePatient(Model model) {
+        CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("pageTitle", "Doctor Homepage");
         return "doctor_homepage";
     }
 
@@ -92,7 +143,8 @@ public class DoctorController {
     }
 
     @PostMapping("/doctor/processTicket/{ticketID}")
-    public String processDiagnosis(@PathVariable(name = "ticketID")int ticketID,@ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
+    public String processDiagnosis(@PathVariable(name = "ticketID") int ticketID,
+            @ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
         CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
@@ -105,9 +157,9 @@ public class DoctorController {
     }
 
     /*---- DELETE TICKET ----*/
-	@RequestMapping("/doctor/delete-ticket/{ticketID}")
-	public String deletePatientTicket(@PathVariable(name = "ticketID") int ticketID) {
-		healthTicketService.delete(ticketID);
-		return "redirect:/doctor/viewTickets";
-	}
+    @RequestMapping("/doctor/delete-ticket/{ticketID}")
+    public String deletePatientTicket(@PathVariable(name = "ticketID") int ticketID) {
+        healthTicketService.delete(ticketID);
+        return "redirect:/doctor/viewTickets";
+    }
 }
