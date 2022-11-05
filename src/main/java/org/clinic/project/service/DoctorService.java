@@ -40,4 +40,8 @@ public class DoctorService {
     public void delete(String doctorID) {
         doctorRepo.deleteById(doctorID);
     }
+
+    public boolean doctorExists(String doctorID) {
+        return doctorRepo.existsById(doctorID);
+    }
 }

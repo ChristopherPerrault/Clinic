@@ -39,4 +39,8 @@ public class PatientService {
     public void delete(String patientID) {
         patientRepo.deleteById(patientID);
     }
+
+    public boolean patientExists(String patientID) {
+        return patientRepo.existsById(patientID);
+    }
 }

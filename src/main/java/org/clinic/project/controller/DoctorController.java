@@ -50,6 +50,12 @@ public class DoctorController {
     @PostMapping("/process_doctor_register")
     public String processDoctorRegister(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult,
             Model model) {
+        boolean exists = doctorService.doctorExists(doctor.getDoctorID());
+        if(exists == true) {
+            model.addAttribute("pageTitle", "Registration Error");
+			bindingResult.rejectValue("doctorID", "doctor.doctorID", "ID already exists");
+            return "doctor_register";
+        }
         if (doctor.getDob() == null) {
             model.addAttribute("pageTitle", "Registration Error");
             bindingResult.rejectValue("dob", "doctor.dob", "Date of birth required");

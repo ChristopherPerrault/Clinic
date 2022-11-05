@@ -49,17 +49,23 @@ public class PatientController {
 
 	/*---- PROCESS REGISTER ----*/
 	@PostMapping("/process_patient_register")
-	public String processPatientRegister(@Valid Patient patient, BindingResult bindingResult, Model model) {
-		if (patient.getDob() == null) {
+	public String processPatientRegister(@Valid @ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model) {
+		boolean exists = patientService.patientExists(patient.getPatientID());
+		if(exists == true) {
+			model.addAttribute("pageTitle", "Registration Error");
+			bindingResult.rejectValue("patientID", "patient.patientID", "ID already exists");
+			return "patient_register";
+		}
+		if(patient.getDob() == null) {
 			model.addAttribute("pageTitle", "Registration Error");
 			bindingResult.rejectValue("dob", "patient.dob", "Birthday cannot be blank!");
 			return "patient_register";
 		}
-		if (!(patient.getPlainPassword().contentEquals(patient.getPassword()))) {
+		if(!(patient.getPlainPassword().contentEquals(patient.getPassword()))) {
 			model.addAttribute("pageTitle", "Registration Error");
 			bindingResult.rejectValue("password", "patient.password", "Passwords do not match!");
 		}
-		if (bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors()) {
 			model.addAttribute("pageTitle", "Registration Error");
 			return "patient_register";
 		} else {
@@ -207,7 +213,7 @@ public class PatientController {
 
 		LocalDate localdate = LocalDate.now();
         healthTicket.setDateSubmitted(localdate);
-		
+
 		healthTicket.setTicketID(ticketID);
 		healthTicketService.update(healthTicket);
 
