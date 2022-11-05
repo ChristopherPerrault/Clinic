@@ -43,6 +43,11 @@ public class HealthTicketService {
         healthRepo.deleteById(ticketID);
     }
 
+    // DELETE
+    public List<HealthTicket> deleteAllByPatientID(Patient patient) {
+        return healthRepo.deleteAllByPatientID(patient);
+    }
+
     //update
     public void update(HealthTicket healthTicket) {
         healthTicket.setTicketID(healthTicket.getTicketID());

@@ -121,6 +121,9 @@ public class PatientController {
 	/*---- DELETE ACCOUNT ----*/
 	@RequestMapping("/patient/delete/{patientID}")
 	public String deletePatient(@PathVariable(name = "patientID") String patientID) {
+		Patient patient = patientService.get(patientID);
+
+		healthTicketService.deleteAllByPatientID(patient);
 		patientService.delete(patientID);
 		return "redirect:/patient/logout";
 	}
