@@ -1,5 +1,6 @@
 package org.clinic.project.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.clinic.project.model.CustomPatientDetails;
+import org.clinic.project.model.Doctor;
 import org.clinic.project.model.HealthTicket;
 import org.clinic.project.model.Patient;
+import org.clinic.project.service.DoctorService;
 import org.clinic.project.service.HealthTicketService;
 import org.clinic.project.service.PatientService;
 
@@ -32,6 +35,8 @@ public class PatientController {
 	@Autowired
 	private HealthTicketService healthTicketService;
 
+	@Autowired
+	private DoctorService doctorService;
 	/*-------------------------- PATIENT REGISTRATION --------------------------*/
 
 	/*---- REGISTER PATIENT ----*/
@@ -150,6 +155,9 @@ public class PatientController {
 		Patient patient = patientService.getLoggedInPatient(patientInfo.getPatientID());
 		healthTicket.setPatientID(patient);
 
+		LocalDate localdate = LocalDate.now();
+        healthTicket.setDateSubmitted(localdate);
+
 		healthTicketService.save(healthTicket);
 		return "redirect:/patient/homepage";
 
@@ -169,6 +177,16 @@ public class PatientController {
 		return "patient_view_tickets";
 	}
 
+	@RequestMapping("patient/view-doctor/{doctorID}")
+    public String viewPatient(@PathVariable(name = "doctorID") Doctor doctor, Model model) {
+        String doctorID = doctor.getDoctorID();
+        doctor = doctorService.get(doctorID);
+
+        model.addAttribute("doctor", doctor);
+
+        return "patient_view_doctor";
+    }
+
 	/*---- EDIT PATIENT TICKET ----*/
 	@RequestMapping("/patient/edit-ticket/{ticketID}")
 	public ModelAndView showEditPatientTicket(@PathVariable(name = "ticketID") int ticketID, Model model) {
@@ -187,6 +205,9 @@ public class PatientController {
 		Patient patient = patientService.getLoggedInPatient(patientInfo.getPatientID());
 		healthTicket.setPatientID(patient);
 
+		LocalDate localdate = LocalDate.now();
+        healthTicket.setDateSubmitted(localdate);
+		
 		healthTicket.setTicketID(ticketID);
 		healthTicketService.update(healthTicket);
 

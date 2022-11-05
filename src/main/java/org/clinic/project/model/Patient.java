@@ -1,6 +1,7 @@
 package org.clinic.project.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -46,7 +47,7 @@ public class Patient {
     private String email;
 
     @Column(nullable = false, name = "date_of_birth")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd", style = "F-")
     private Date dob;
 
     @NotBlank

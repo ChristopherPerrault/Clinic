@@ -18,17 +18,21 @@
                         <th>Symptoms</th>
                         <th>Diagnosis</th>
                         <th>Doctor ID</th>
+                        <th>Date Submitted</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    <tr th:each="healthticket: ${listHealthtickets}">
+                    <tr th:each="healthticket: ${listHealthtickets}" th:if="${healthticket.diagnosis == null}">
                         <td th:text="${healthticket.ticketID}">Ticket ID</td>
-                        <td th:text="${healthticket.patientID}"><a
-                                th:href="@{'/doctor/view-patient/' + ${healthticket.patientID}}">Patient ID</a></td>
+                        <td>
+                            <a title="View Patient's Information" th:href="@{'/doctor/view-patient/' + ${healthticket.patientID}}"
+                                th:text="${healthticket.patientID}" />
+                        </td>
                         <td th:text="${healthticket.symptoms}">Symptoms</td>
                         <td th:text="${healthticket.diagnosis}">Diagnosis</td>
                         <td th:text="${healthticket.doctorID}">Doctor ID</td>
+                        <td th:text="${healthticket.dateSubmitted}">Date Submitted</td>
                         <td>
                             <a th:href="@{'/doctor/edit-ticket/' + ${healthticket.ticketID}}">Add a Diagnosis</a>
                             &nbsp;&nbsp;
@@ -37,6 +41,7 @@
                     </tr>
                 </tbody>
             </table>
+            <h4><a th:href="@{/doctor/homepage}">Back to Home</a></h4>
         </div>
     </div>
     <div th:replace="fragments :: footer"></div>

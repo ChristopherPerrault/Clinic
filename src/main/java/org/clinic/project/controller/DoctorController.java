@@ -1,5 +1,6 @@
 package org.clinic.project.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.clinic.project.model.CustomDoctorDetails;
 import org.clinic.project.model.Doctor;
 import org.clinic.project.model.HealthTicket;
+import org.clinic.project.model.Patient;
 // import org.clinic.project.model.HealthTicket;
 import org.clinic.project.service.DoctorService;
 // import org.clinic.project.service.HealthTicketService;
 import org.clinic.project.service.HealthTicketService;
+import org.clinic.project.service.PatientService;
 
 @Controller
 public class DoctorController {
@@ -30,6 +33,9 @@ public class DoctorController {
 
     @Autowired
     private HealthTicketService healthTicketService;
+
+    @Autowired
+    private PatientService patientService;
 
     /*-------------------------- DOCTOR REGISTRATION --------------------------*/
     /*---- REGISTER DOCTOR ----*/
@@ -105,7 +111,7 @@ public class DoctorController {
 
     /*---- DELETE ACCOUNT ----*/
     @RequestMapping("/doctor/delete/{doctorID}")
-    public String deletePatient(@PathVariable(name = "doctorID") String doctorID) {
+    public String deleteDoctor(@PathVariable(name = "doctorID") String doctorID) {
         Doctor doctor = doctorService.get(doctorID);
 
         healthTicketService.deleteAllByDoctorID(doctor);
@@ -114,14 +120,14 @@ public class DoctorController {
     }
 
     @RequestMapping("/doctor/logout")
-    public String patientLogoutPage(Model model) {
+    public String doctorLogoutPage(Model model) {
         model.addAttribute("pageTitle", "Doctor Logged Out");
         return "logged_out";
     }
 
     /*-------------------------- Doctor (SIGNED IN) --------------------------*/
     @RequestMapping("/doctor/homepage")
-    public String welcomePatient(Model model) {
+    public String welcomeDoctor(Model model) {
         CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
@@ -137,6 +143,16 @@ public class DoctorController {
         model.addAttribute("listHealthtickets", listHealthtickets);
         model.addAttribute("pageTitle", "Doctor View Tickets");
         return "doctor_view_tickets";
+    }
+
+    @RequestMapping("doctor/view-patient/{patientID}")
+    public String doctorViewPatient(@PathVariable(name = "patientID") Patient patient, Model model) {
+        String patientID = patient.getPatientID();
+        patient = patientService.get(patientID);
+
+        model.addAttribute("patient", patient);
+
+        return "doctor_view_patient";
     }
 
     @RequestMapping("/doctor/edit-ticket/{ticketID}")
@@ -156,6 +172,9 @@ public class DoctorController {
                 .getPrincipal();
         Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
         healthTicket.setDoctorID(doctor);
+        
+        LocalDate localdate = LocalDate.now();
+        healthTicket.setDateSubmitted(localdate);
 
         healthTicket.setTicketID(ticketID);
         healthTicketService.update(healthTicket);
@@ -165,7 +184,7 @@ public class DoctorController {
 
     /*---- DELETE TICKET ----*/
     @RequestMapping("/doctor/delete-ticket/{ticketID}")
-    public String deletePatientTicket(@PathVariable(name = "ticketID") int ticketID) {
+    public String deleteTicket(@PathVariable(name = "ticketID") int ticketID) {
         healthTicketService.delete(ticketID);
         return "redirect:/doctor/viewTickets";
     }

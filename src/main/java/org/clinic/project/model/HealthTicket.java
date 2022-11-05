@@ -1,5 +1,6 @@
 package org.clinic.project.model;
 
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,6 +32,8 @@ public class HealthTicket {
     @Column(nullable = true, length = 300, name = "diagnois")
     private String diagnosis;
 
+    private LocalDate dateSubmitted;
+    
     public int getTicketID() {
         return ticketID;
     }
@@ -70,7 +73,20 @@ public class HealthTicket {
     public void setDoctorID(Doctor doctorID) {
         this.doctorID = doctorID;
     }
- 
+
+    public LocalDate getDateSubmitted() {
+        return dateSubmitted;
+    }
+
+    public void setDateSubmitted(LocalDate localdate) {
+        this.dateSubmitted = localdate;
+    }
+
+    @Override
+    public String toString() {
+        return "HealthTicket [ticketID=" + ticketID + ", patientID=" + patientID + ", doctorID=" + doctorID
+                + ", symptoms=" + symptoms + ", diagnosis=" + diagnosis + ", dateSubmitted=" + dateSubmitted + "]";
+    }
     
     
 }
