@@ -37,6 +37,46 @@
         </nav>
     </div>
 
+    <!-- HEADER Logged in (patients) -->
+    <div class="navbar-container" th:fragment="header-logged-in-patient">
+        <nav class="nav">
+            <a href="/" title="Return to Home"><img th:src="@{/images/home-button-img.jpg}" class="img-home"></a>
+            <ul class="menu">
+                <li>Need a Doctor?
+                    <ul class="sub-menu">
+                        <li><a href="/patient/addTicket" title="">Submit a New Ticket</a></li>
+                        <li><a href="/patient/viewTickets" title="">View All Tickets</a></li>
+                    </ul>
+                </li>
+                <li>My Account
+                    <ul class="sub-menu">
+                        <li><a href="/patient/homepage" title="View Account Info">Account Information</a></li>
+                    </ul>
+                </li>
+                <li><a href="/patient/logout" title="Log Out">Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- HEADER Logged in (doctors) -->
+    <div class="navbar-container" th:fragment="header-logged-in-doctor">
+        <nav class="nav">
+            <a href="/" title="Return to Home"><img th:src="@{/images/home-button-img.jpg}" class="img-home"></a>
+            <ul class="menu">
+                <li>Health Tickets
+                    <ul class="sub-menu">
+                        <li><a href="/doctor/viewTickets" title="">View Active Tickets</a></li>
+                    </ul>
+                </li>
+                <li>My Account
+                    <ul class="sub-menu">
+                        <li><a href="/doctor/homepage" title="View Account Info">Account Information</a></li>
+                    </ul>
+                </li>
+                <li><a href="/doctor/logout" title="Log Out">Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <!-- FOOTER -->
     <div class="footer" th:fragment="footer">
