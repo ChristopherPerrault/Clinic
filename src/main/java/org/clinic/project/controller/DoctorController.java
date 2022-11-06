@@ -86,10 +86,11 @@ public class DoctorController {
 
     /*---- EDIT Doctor ACCOUNT INFO----*/
     @RequestMapping("/doctor/edit/{doctorID}")
-    public ModelAndView showEditUserPage(@PathVariable(name = "doctorID") String doctorID) {
+    public ModelAndView showEditUserPage(@PathVariable(name = "doctorID") String doctorID, Model model) {
         ModelAndView mav = new ModelAndView("doctor_edit");
         Doctor doctor = doctorService.get(doctorID);
         mav.addObject("doctor", doctor);
+        model.addAttribute("pageTitle", "Doctor Edit");
         return mav;
     }
 
@@ -138,7 +139,7 @@ public class DoctorController {
                 .getPrincipal();
         Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
         model.addAttribute("doctor", doctor);
-        model.addAttribute("pageTitle", "Patient Homepage");
+        model.addAttribute("pageTitle", "Doctor Homepage");
         return "doctor_homepage";
     }
 
@@ -147,6 +148,7 @@ public class DoctorController {
     public String viewTickets(Model model) {
         List<HealthTicket> listHealthtickets = healthTicketService.findAll();
         model.addAttribute("listHealthtickets", listHealthtickets);
+        model.addAttribute("doctor", new Doctor());
         model.addAttribute("pageTitle", "Doctor View Tickets");
         return "doctor_view_tickets";
     }
@@ -155,7 +157,7 @@ public class DoctorController {
     public String doctorViewPatient(@PathVariable(name = "patientID") Patient patient, Model model) {
         String patientID = patient.getPatientID();
         patient = patientService.get(patientID);
-
+        model.addAttribute("doctor", new Doctor());
         model.addAttribute("patient", patient);
 
         return "doctor_view_patient";
@@ -166,6 +168,7 @@ public class DoctorController {
         ModelAndView mav = new ModelAndView("doctor_edit_ticket");
         HealthTicket healthTicket = healthTicketService.get(ticketID);
         mav.addObject("healthTicket", healthTicket);
+        model.addAttribute("doctor", new Doctor());
         model.addAttribute("pageTitle", "Edit Ticket");
 
         return mav;
@@ -190,8 +193,9 @@ public class DoctorController {
 
     /*---- DELETE TICKET ----*/
     @RequestMapping("/doctor/delete-ticket/{ticketID}")
-    public String deleteTicket(@PathVariable(name = "ticketID") int ticketID) {
+    public String deleteTicket(@PathVariable(name = "ticketID") int ticketID, Model model) {
         healthTicketService.delete(ticketID);
+        model.addAttribute("doctor", new Doctor());
         return "redirect:/doctor/viewTickets";
     }
 }

@@ -2,48 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments :: head">
-
 <body>
-    <div th:replace="fragments :: header-logged-in-doctor"></div>
-    <div>
-        <div>
-            <form th:action="@{/doctor_homepage}" method="POST">
-                <h3>
-                    Welcome Dr. (firstname lastname)
-                </h3>
-                <br>
-                <h3><a th:href="@{/doctor/viewTickets}">Consult Health Tickets</a></h3>
-                <br>
-                <table class="table table-striped table-bordered" th:object="${doctor}">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Doctor ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>E-mail</th>
-                            <th>Date of Birth</th>
-                            <th>Sex</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td th:text="${doctor.doctorID}"></td>
-                            <td th:text="${doctor.firstName}"></td>
-                            <td th:text="${doctor.lastName}"></td>
-                            <td th:text="${doctor.email}"></td>
-                            <td th:text="${doctor.dob}"></td>
-                            <td th:text="${doctor.sex}"></td>
-                            <td><a id="link" th:href="@{'/doctor/edit/' + ${doctor.doctorID}}">Edit Account</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <br>
-                <h3><a th:href="@{/doctor/logout}">Log Out</a></h3>
-            </form>
-        </div>
-        <div th:replace="fragments :: footer"></div>
+	<div th:replace="fragments :: header-logged-in-doctor"></div>
+	<div>
+		<h1>This is your dashboard -- You can chillllllll here</h1>
+	</div>
+	<div th:replace="fragments :: footer"></div>
 </body>
 
 </html>

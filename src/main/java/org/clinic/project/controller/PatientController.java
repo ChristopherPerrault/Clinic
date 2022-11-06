@@ -150,6 +150,7 @@ public class PatientController {
 	@RequestMapping("/patient/addTicket")
 	public String addPatientTicket(Model model) {
 		model.addAttribute("healthTicket", new HealthTicket());
+		model.addAttribute("patient", new Patient());
 		model.addAttribute("pageTitle", "Create Ticket");
 		return "patient_add_ticket";
 	}
@@ -179,6 +180,7 @@ public class PatientController {
 		List<HealthTicket> healthTicketList = healthTicketService.getByPatient(patient);
 
 		model.addAttribute("healthTicketList", healthTicketList);
+		model.addAttribute("patient", patient);
 		model.addAttribute("pageTitle", "View Tickets");
 		return "patient_view_tickets";
 	}
@@ -187,7 +189,7 @@ public class PatientController {
     public String viewPatient(@PathVariable(name = "doctorID") Doctor doctor, Model model) {
         String doctorID = doctor.getDoctorID();
         doctor = doctorService.get(doctorID);
-
+        model.addAttribute("patient", new Patient());
         model.addAttribute("doctor", doctor);
 
         return "patient_view_doctor";
@@ -199,6 +201,7 @@ public class PatientController {
 		ModelAndView mav = new ModelAndView("patient_edit_ticket");
 		HealthTicket healthTicket = healthTicketService.get(ticketID);
 		mav.addObject("healthTicket", healthTicket);
+		model.addAttribute("patient", new Patient());
 		model.addAttribute("pageTitle", "Edit Ticket");
 		return mav;
 	}
@@ -222,7 +225,8 @@ public class PatientController {
 
 	/*---- DELETE PATIENT TICKET ----*/
 	@RequestMapping("/patient/delete-ticket/{ticketID}")
-	public String deletePatientTicket(@PathVariable(name = "ticketID") int ticketID) {
+	public String deletePatientTicket(@PathVariable(name = "ticketID") int ticketID, Model model) {
+		model.addAttribute("patient", new Patient());
 		healthTicketService.delete(ticketID);
 		return "redirect:/patient/viewTickets";
 	}
