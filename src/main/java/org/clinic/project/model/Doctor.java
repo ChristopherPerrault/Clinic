@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Doctor {
     
     @Id
-    @NotBlank
+    @NotBlank(message = "ID is required.")
     @Pattern(regexp = "^[a-zA-Z0-9]{4}$", message="Must be exactly 4 characters long")
     @Column(nullable = false, length = 10)
     private String doctorID;
@@ -31,17 +31,17 @@ public class Doctor {
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message="Must contain 1 uppercase, 1 lowercase, 1 special character, 1 number and be between 8 and 20 characters")    
     private String plainPassword;
     
-    @NotBlank
+    @NotBlank(message = "First Name is required.")
     @Size(max = 25)
     @Column(nullable = false, length = 25, name = "first_name")
     private String firstName;
     
-    @NotBlank
+    @NotBlank(message = "Last Name is required.")
     @Size(max = 25)
     @Column(nullable = false, length = 25, name = "last_name")
     private String lastName;
     
-    @NotBlank
+    @NotBlank(message = "Email is required.")
     @Email(message="Please enter a valid email address")
     @Column(nullable = false, length = 50, name = "email")
     private String email;
@@ -50,7 +50,7 @@ public class Doctor {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     
-    @NotBlank
+    @NotBlank(message = "Sex is required.")
     @Size(max = 6)
     @Column(nullable = false, length = 6, name = "sex")
     private String sex;
