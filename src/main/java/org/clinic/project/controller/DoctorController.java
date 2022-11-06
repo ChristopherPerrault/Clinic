@@ -51,9 +51,9 @@ public class DoctorController {
     public String processDoctorRegister(@Valid @ModelAttribute("doctor") Doctor doctor, BindingResult bindingResult,
             Model model) {
         boolean exists = doctorService.doctorExists(doctor.getDoctorID());
-        if(exists == true) {
+        if (exists == true) {
             model.addAttribute("pageTitle", "Registration Error");
-			bindingResult.rejectValue("doctorID", "doctor.doctorID", "ID already exists");
+            bindingResult.rejectValue("doctorID", "doctor.doctorID", "ID already exists");
             return "doctor_register";
         }
         if (doctor.getDob() == null) {
@@ -148,7 +148,10 @@ public class DoctorController {
     public String viewTickets(Model model) {
         List<HealthTicket> listHealthtickets = healthTicketService.findAll();
         model.addAttribute("listHealthtickets", listHealthtickets);
-        model.addAttribute("doctor", new Doctor());
+        CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
+        model.addAttribute("doctor", doctor);
         model.addAttribute("pageTitle", "Doctor View Tickets");
         return "doctor_view_tickets";
     }
@@ -157,7 +160,10 @@ public class DoctorController {
     public String doctorViewPatient(@PathVariable(name = "patientID") Patient patient, Model model) {
         String patientID = patient.getPatientID();
         patient = patientService.get(patientID);
-        model.addAttribute("doctor", new Doctor());
+        CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
+        model.addAttribute("doctor", doctor);
         model.addAttribute("patient", patient);
 
         return "doctor_view_patient";
@@ -168,7 +174,10 @@ public class DoctorController {
         ModelAndView mav = new ModelAndView("doctor_edit_ticket");
         HealthTicket healthTicket = healthTicketService.get(ticketID);
         mav.addObject("healthTicket", healthTicket);
-        model.addAttribute("doctor", new Doctor());
+        CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
+        model.addAttribute("doctor", doctor);
         model.addAttribute("pageTitle", "Edit Ticket");
 
         return mav;
