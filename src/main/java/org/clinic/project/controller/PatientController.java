@@ -149,8 +149,11 @@ public class PatientController {
 	/*---- ADD PATIENT TICKET ----*/
 	@RequestMapping("/patient/addTicket")
 	public String addPatientTicket(Model model) {
+		CustomPatientDetails patientInfo = (CustomPatientDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		Patient patient = patientService.getLoggedInPatient(patientInfo.getPatientID());
 		model.addAttribute("healthTicket", new HealthTicket());
-		model.addAttribute("patient", new Patient());
+		model.addAttribute("patient", patient);
 		model.addAttribute("pageTitle", "Create Ticket");
 		return "patient_add_ticket";
 	}
@@ -187,9 +190,12 @@ public class PatientController {
 
 	@RequestMapping("patient/view-doctor/{doctorID}")
     public String viewPatient(@PathVariable(name = "doctorID") Doctor doctor, Model model) {
+		CustomPatientDetails patientInfo = (CustomPatientDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		Patient patient = patientService.getLoggedInPatient(patientInfo.getPatientID());
         String doctorID = doctor.getDoctorID();
         doctor = doctorService.get(doctorID);
-        model.addAttribute("patient", new Patient());
+        model.addAttribute("patient", patient);
         model.addAttribute("doctor", doctor);
 
         return "patient_view_doctor";
