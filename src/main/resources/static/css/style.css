@@ -7,8 +7,9 @@
   /* background-color: dimgray; */
 }
 
-/* ERROR MSG */
-span {
+/* ERROR MESSAGES */
+span,
+h4 {
   color: rgb(186, 31, 31);
 }
 
@@ -181,7 +182,7 @@ span {
   height: 34px;
   width: 200px;
   margin-top: 20px;
-  margin-left: 50%;
+  /* margin-left: 50%; */
   font-size: 18px;
   text-decoration: none;
   border: solid 2px;
@@ -209,23 +210,27 @@ span {
   margin-left: 38px;
 }
 
-.register-right {
+.register-right,
+.login-right {
   margin-top: 10px;
   width: 50%;
 }
 
-.register-right > p {
+.register-right > p,
+.login-right > p {
   font-family: "Manrope", sans-serif;
   font-size: 28px;
   padding-right: 80px;
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 }
 
-.register-left {
+.register-left,
+.login-left {
   width: 50%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin-left: 20px;
+  margin-left: 30px;
+  margin-bottom: 100px;
 }

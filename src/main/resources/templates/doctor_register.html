@@ -8,8 +8,9 @@
 	<div class="form-container">
 		<div class="register-left">
 			<h2>Doctor Registration Form</h2>
-			<br />
-			<form action="#" th:action="@{/process_doctor_register}" th:object="${doctor}" method="POST">
+			<br>
+			<h5>You'll use your Doctor ID to log in</h5>
+			<form th:action="@{/process_doctor_register}" th:object="${doctor}" method="POST">
 				<table>
 					<tr>
 						<td>Doctor ID:</td>

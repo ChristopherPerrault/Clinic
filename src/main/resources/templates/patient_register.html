@@ -10,7 +10,7 @@
             <h2>Patient Registration Form</h2>
             <br>
             <h5>You'll use your Patient ID to log in</h5>
-            <form action="#" th:action="@{/process_patient_register}" th:object="${patient}" method="POST">
+            <form th:action="@{/process_patient_register}" th:object="${patient}" method="POST">
                 <table>
                     <tr>
                         <td>Patient ID:</td>
