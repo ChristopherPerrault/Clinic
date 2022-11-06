@@ -61,10 +61,13 @@
 				</tr>
 				<tr>
 					<td>Sex:</td>
-					<td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
-					<td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
-					<td><input type="radio" th:field="*{sex}" value="N/A" />Prefer not to say</td>
-					<td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
+					<td>
+						<select th:field="*{sex}">
+							<option th:value="Male">Male</option>
+							<option th:value="Female">Female</option>
+							<option th:value="NA">Prefer not to say</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td><button type="submit">Register</button></td>
