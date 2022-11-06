@@ -6,82 +6,89 @@
 <body>
     <div th:replace="fragments :: header"></div>
     <div class="form-container">
-        <h2>Patient Registration Form</h2>
-        <br />
-        <form action="#" th:action="@{/process_patient_register}" th:object="${patient}" method="POST">
-            <table>
-                <tr>
-                    <td>Patient ID:</td>
-                    <td>
-                        <input type="text" th:field="*{patientID}" />
-                        <span th:if="${#fields.hasErrors('patientID')}" th:errors="*{patientID}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Enter a Password:</td>
-                    <td>
-                        <input type="password" th:field="*{plainPassword}" />
-                        <span th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Retype Password:</td>
-                    <td>
-                        <input type="password" th:field="*{password}" />
-                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>First Name:</td>
-                    <td>
-                        <input type="text" th:field="*{firstName}" />
-                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Last Name:</td>
-                    <td>
-                        <input type="text" th:field="*{lastName}" />
-                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td>
-                        <input type="text" th:field="*{email}" />
-                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Date of Birth:</td>
-                    <td>
-                        <input type="date" th:field="*{dob}" />
-                        <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sex:</td>
-                    <td>
-                        <select th:field="*{sex}">
-                            <option th:value="Male">Male</option>
-                            <option th:value="Female">Female</option>
-                            <option th:value="NA">Prefer not to say</option>
-                        </select>
-                    </td>
-                    <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
-                </tr>
-                <tr>
-                    <td>Pre-Existing Medical Conditions:</td>
-                    <td>
-                        <input type="text" th:field="*{medicalConditions}" />
-                        <span th:if="${#fields.hasErrors('medicalConditions')}" th:errors="*{medicalConditions}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Register</button> </td>
-                </tr>
-            </table>
-        </form>
+        <div class="register-left">
+            <h2>Patient Registration Form</h2>
+            <br>
+            <h5>You'll use your Patient ID to log in</h5>
+            <form action="#" th:action="@{/process_patient_register}" th:object="${patient}" method="POST">
+                <table>
+                    <tr>
+                        <td>Patient ID:</td>
+                        <td>
+                            <input type="text" th:field="*{patientID}" />
+                            <span th:if="${#fields.hasErrors('patientID')}" th:errors="*{patientID}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enter a Password:</td>
+                        <td>
+                            <input type="password" th:field="*{plainPassword}" />
+                            <span th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Retype Password:</td>
+                        <td>
+                            <input type="password" th:field="*{password}" />
+                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>First Name:</td>
+                        <td>
+                            <input type="text" th:field="*{firstName}" />
+                            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td>
+                            <input type="text" th:field="*{lastName}" />
+                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>
+                            <input type="text" th:field="*{email}" />
+                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth:</td>
+                        <td>
+                            <input type="date" th:field="*{dob}" />
+                            <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sex:</td>
+                        <td>
+                            <select th:field="*{sex}">
+                                <option th:value="Male">Male</option>
+                                <option th:value="Female">Female</option>
+                                <option th:value="NA">Prefer not to say</option>
+                            </select>
+                        </td>
+                        <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
+                    </tr>
+                    <tr>
+                        <td>Pre-Existing Medical Conditions:</td>
+                        <td>
+                            <input type="text" th:field="*{medicalConditions}" />
+                            <span th:if="${#fields.hasErrors('medicalConditions')}"
+                                th:errors="*{medicalConditions}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Register</button> </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="register-right">
+            <p>We just need some information so our doctors can give you personalized care.</p>
+        </div>
     </div>
     <div th:replace="fragments :: footer"></div>
 </body>
