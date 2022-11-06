@@ -189,7 +189,6 @@ a:visited {
   height: 34px;
   width: 200px;
   margin-top: 20px;
-  /* margin-left: 50%; */
   font-size: 18px;
   text-decoration: none;
   border: solid 2px;
@@ -267,3 +266,6 @@ a:visited {
   color: #000000;
   text-align: center;
 }
+
+/*  --- PATIENT ADD TICKET ---  */
+.add-ticket-form

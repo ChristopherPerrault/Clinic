@@ -5,20 +5,21 @@
 
 <body>
     <div th:replace="fragments :: header-logged-in-patient"></div>
-    <div>
-        <h2>Health Ticket Creation Form</h2>
-        <br />
-        <form action="#" th:action="@{/patient/processTicket}" th:object="${healthTicket}" method="POST">
+    <div class="add-ticket-form">
+        <h2>Tell us what's wrong</h2>
+        <br>
+        <p>Describe your symptoms so a Doctor can issue a proper Diagnosis</p>
+        <br>
+        <form th:action="@{/patient/processTicket}" th:object="${healthTicket}" method="POST">
             <table>
                 <tr>
                     <td>Symptoms:</td>
                     <td><input type="text" th:field="*{symptoms}" /></td>
                 </tr>
                 <tr>
-                    <td><button type="submit">Create Ticket</button> </td>
+                    <td><button type="submit">Create HealthTicket™</button> </td>
                 </tr>
             </table>
-            <h4><a th:href="@{/patient/homepage}">Back to Home</a></h4>
         </form>
     </div>
     <div th:replace="fragments :: footer"></div>
