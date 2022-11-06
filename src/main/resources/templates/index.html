@@ -5,15 +5,25 @@
 
 <body>
     <div th:replace="fragments :: header"></div>
-    <div>
-        <h3>Welcome</h3>
-        <a href="/patient_register">Register as Patient</a>
-        <br /><br />
-        <a href="/doctor_register">Register as Doctor</a>
-        <br /><br />
-        <a href="/patient/login">Log in as a Patient</a>
-        <br /><br />
-        <a href="/doctor/login">Log in as a Doctor</a>
+    <div class="index-container">
+        <div class="index-left">
+            <h3 class="index-banner_text">Clinic+<br><br>See the doctor,<br>without the wait.</h3>
+        </div>
+        <div class="index-right">
+            <p>Looking for quick medical advice?<br>Tell us how you're feeling and a qualified professional* will
+                respond
+                with a recommendation right away.<br><br>Register as a Patient for free to receive the care you need,
+                fast!
+            </p>
+            <a href="/patient_register" class="btn-pat">Sign me up</a>
+            <p>Already one of our Patients?</p>
+            <a href="/patient/login" class="btn-pat">Log In</a>
+            <p>Medical professionals are essential to all of us. If you work in medicine, we'd love your help. We can
+                connect you to those in need.</p>
+            <a href="/doctor_register" class="btn-dr">Register as Doctor</a>
+            <p>Already one of our Doctors?</p>
+            <a href="/doctor/login" class="btn-dr">Log In as Doctor</a>
+        </div>
     </div>
     <div th:replace="fragments :: footer"></div>
 </body>
