@@ -15,5 +15,6 @@ public interface HealthTicketRepository extends JpaRepository<HealthTicket, Inte
     public List<HealthTicket> deleteAllByPatientID(Patient patient); 
 
     @Query("SELECT h FROM HealthTicket h WHERE h.doctorID = ?1")
+    public List<HealthTicket> findByDoctorID(Doctor doctor);
     public List<HealthTicket> deleteAllByDoctorID(Doctor doctor);
 }
