@@ -91,7 +91,7 @@ span {
   height: 20px;
 }
 
-/*  INDEX  */
+/* --- INDEX --- */
 
 .index-container {
   display: flex;
@@ -139,8 +139,11 @@ span {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.index-right > a:visited {
+  color: #000000;
+}
+
 .index-right > a:hover {
-  border: 2.2px solid;
   background-color: rgb(114, 215, 255);
 }
 
@@ -156,4 +159,11 @@ span {
 
 .btn-dr {
   background-color: rgb(245, 171, 52);
+}
+
+/* --- FORMS --- */
+.form-container {
+  margin: 20px;
+  font-family: "Manrope", sans-serif;
+  width: 400px;
 }

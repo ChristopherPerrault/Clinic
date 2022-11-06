@@ -5,7 +5,7 @@
 
 <body>
     <div th:replace="fragments :: header"></div>
-    <div>
+    <div class="form-container">
         <h2>Patient Registration Form</h2>
         <br />
         <form action="#" th:action="@{/process_patient_register}" th:object="${patient}" method="POST">
@@ -61,9 +61,13 @@
                 </tr>
                 <tr>
                     <td>Sex:</td>
-                    <td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
-                    <td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
-                    <td><input type="radio" th:field="*{sex}" value="N/A" />Prefer not to say</td>
+                    <td>
+                        <select th:field="*{sex}">
+                            <option th:value="Male">Male</option>
+                            <option th:value="Female">Female</option>
+                            <option th:value="NA">Prefer not to say</option>
+                        </select>
+                    </td>
                     <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
                 </tr>
                 <tr>

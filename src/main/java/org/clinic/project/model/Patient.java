@@ -20,7 +20,7 @@ public class Patient {
 
     @Id
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]{4}$", message="Must be exactly 4 characters long")
+    @Pattern(regexp = "^[a-zA-Z0-9]{4}$", message = "Must be exactly 4 characters long")
     @Column(nullable = false, length = 10)
     private String patientID;
 
@@ -28,7 +28,7 @@ public class Patient {
     private String password;
 
     @Transient
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message="Must contain 1 uppercase, 1 lowercase, 1 special character, 1 number and be between 8 and 20 characters")    
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "Must contain 1 uppercase, 1 lowercase, 1 special character, 1 number and be between 8 and 20 characters")
     private String plainPassword;
 
     @NotBlank
@@ -42,7 +42,7 @@ public class Patient {
     private String lastName;
 
     @NotBlank
-    @Email(message="Please enter a valid email address")
+    @Email(message = "Please enter a valid email address")
     @Column(nullable = false, length = 50, name = "email")
     private String email;
 
@@ -100,14 +100,14 @@ public class Patient {
     }
 
     public String getPlainPassword() {
-		return plainPassword;
-	}
+        return plainPassword;
+    }
 
-	public void setPlainPassword(String plainPassword) {
-		this.plainPassword = plainPassword;
-	}
+    public void setPlainPassword(String plainPassword) {
+        this.plainPassword = plainPassword;
+    }
 
-	public Date getDob() {
+    public Date getDob() {
         return dob;
     }
 
@@ -130,7 +130,7 @@ public class Patient {
     public void setMedicalConditions(String medicalConditions) {
         this.medicalConditions = medicalConditions;
     }
-    
+
     @Override
     public String toString() {
         return patientID;
