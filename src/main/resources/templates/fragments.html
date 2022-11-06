@@ -45,6 +45,7 @@
         <nav class="nav">
             <a href="/" title="Return to Home"><img th:src="@{/images/home-button-img.jpg}" class="img-home"></a>
             <ul class="menu">
+                <li>Welcome [[${patient.firstName}]] | </li>
                 <li>Need a Doctor?
                     <ul class="sub-menu">
                         <li><a href="/patient/addTicket" title="">Submit a New Ticket</a></li>
@@ -66,6 +67,7 @@
         <nav class="nav">
             <a href="/" title="Return to Home"><img th:src="@{/images/home-button-img.jpg}" class="img-home"></a>
             <ul class="menu">
+                <li>Welcome [[${doctor.firstName}]] | </li>
                 <li>Health Tickets
                     <ul class="sub-menu">
                         <li><a href="/doctor/viewTickets" title="">View Active Tickets</a></li>
