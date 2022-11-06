@@ -5,65 +5,76 @@
 
 <body>
     <div th:replace="fragments :: header-logged-in-doctor"></div>
-    <div>
-        <h2>Update Your Doctor Account Details:</h2>
-        <br>
-        <form action="#" th:action="@{/process_doctor_edit}" th:object="${doctor}" method="POST">
-            <table>
-                <tr>
-                    <td>Doctor ID:</td>
-                    <td><input type="text" th:field="*{doctorID}" readonly /></td>
-                </tr>
-                <tr>
-                    <td>First Name:</td>
-                    <td><input type="text" th:field="*{firstName}" /> <span th:if="${#fields.hasErrors('firstName')}"
-                            th:errors="*{firstName}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Last Name:</td>
-                    <td><input type="text" th:field="*{lastName}" /> <span th:if="${#fields.hasErrors('lastName')}"
-                            th:errors="*{lastName}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" th:field="*{email}" /> <span th:if="${#fields.hasErrors('email')}"
-                            th:errors="*{email}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Enter a Password:</td>
-                    <td><input type="password" th:field="*{plainPassword}" /> <span
-                            th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></span></td>
-                </tr>
-                <tr>
-                    <td>Retype Password:</td>
-                    <td><input type="password" th:field="*{password}" /> <span th:if="${#fields.hasErrors('password')}"
-                            th:errors="*{password}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Date of Birth:</td>
-                    <td><input type="date" th:field="*{dob}" /> <span th:if="${#fields.hasErrors('dob')}"
-                            th:errors="*{dob}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sex:</td>
-                    <td><input type="radio" th:field="*{sex}" value="Male" />Male</td>
-                    <td><input type="radio" th:field="*{sex}" value="Female" />Female</td>
-                    <td><input type="radio" th:field="*{sex}" value="Unspecified" />Prefer not to say</td>
-                    <td><span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Please select one</span></td>
-                </tr>
-                <tr>
-                    <td><a id="link" th:href="@{'/doctor/delete/' + ${doctor.doctorID}}"> Permanently Delete My
-                            Account</a></td>
-                    <td><button type="submit">Update</button></td>
-                </tr>
-            </table>
-            <h4><a th:href="@{/doctor/homepage}">Back to Home</a></h4>
-        </form>
+    <div class="form-container">
+        <div class="register-left">
+            <h2>Edit Your Doctor Account</h2>
+            <br>
+            <form th:action="@{/process_doctor_edit}" th:object="${doctor}" method="POST">
+                <table>
+                    <tr>
+                        <td>Doctor ID:</td>
+                        <td><input type="text" th:field="*{doctorID}" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>First Name:</td>
+                        <td><input type="text" th:field="*{firstName}" /> <span
+                                th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" th:field="*{lastName}" /> <span th:if="${#fields.hasErrors('lastName')}"
+                                th:errors="*{lastName}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" th:field="*{email}" /> <span th:if="${#fields.hasErrors('email')}"
+                                th:errors="*{email}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enter a Password:</td>
+                        <td><input type="password" th:field="*{plainPassword}" /> <span
+                                th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Retype Password:</td>
+                        <td><input type="password" th:field="*{password}" /> <span
+                                th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth:</td>
+                        <td><input type="date" th:field="*{dob}" /> <span th:if="${#fields.hasErrors('dob')}"
+                                th:errors="*{dob}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sex:</td>
+                        <td>
+                            <select th:field="*{sex}">
+                                <option th:value="Male">Male</option>
+                                <option th:value="Female">Female</option>
+                                <option th:value="NA">Prefer not to say</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Update</button></td>
+                    </tr>
+                </table>
+                <!--/* <h4><a th:href="@{/doctor/homepage}">Back to Home</a></h4> */-->
+            </form>
+            <br>
+            <br>
+            <h4>⚡ Danger Zone ⚡</h4>
+            <a th:href="@{'/doctor/delete/' + ${doctor.doctorID}}" class="delete-btn"> Permanently Delete My
+                Account</a>
+        </div>
+        <div class="register-right">
+            <p>Adjusting your account helps us help you.</p>
+        </div>
     </div>
     <div th:replace="fragments :: footer"></div>
 </body>

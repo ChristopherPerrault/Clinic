@@ -25,7 +25,6 @@
             <ul class="menu">
                 <li>Register
                     <ul class="sub-menu">
-                        <!-- BUG: Register links work from Home but not from other pages -->
                         <li><a href="/patient_register" title="Register as Patient">as Patient</a></li>
                         <li><a href="/doctor_register" title="Register as Doctor">as Doctor</a></li>
                     </ul>
@@ -59,7 +58,8 @@
                                 Information</a></li>
                     </ul>
                 </li>
-                <li><a href="/patient/logout" title="Log Out">Log Out</a></li>
+                <li><a href="/patient/logout" title="Log Out">Log Out</a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -74,10 +74,11 @@
                 </li>
                 <li>Health Tickets
                     <ul class="sub-menu">
-                        <li><a href="/doctor/viewTickets" title="">View Active Tickets</a></li>
+                        <li><a href="/doctor/viewTickets" title="View Active Tickets">View Active Tickets</a></li>
                     </ul>
                     <ul class="sub-menu">
-                        <li><a href="/doctor/viewResolvedTickets" title="">View Resolved Tickets</a></li>
+                        <li><a href="/doctor/viewResolvedTickets" title="View Resolved Tickets">View Resolved
+                                Tickets</a></li>
                     </ul>
                 </li>
                 <li>My Account
@@ -90,6 +91,7 @@
             </ul>
         </nav>
     </div>
+
 
     <!-- FOOTER -->
     <div class="footer" th:fragment="footer">
