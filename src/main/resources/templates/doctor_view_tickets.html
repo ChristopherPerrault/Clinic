@@ -5,12 +5,12 @@
 
 <body>
     <div th:replace="fragments :: header-logged-in-doctor"></div>
-    <div>
+    <div class="viewTickets">
         <div>
             <h1>Health Tickets</h1>
         </div>
         <div>
-            <table>
+            <table class="ticketTable">
                 <thead>
                     <tr>
                         <th>Ticket ID</th>
@@ -19,15 +19,15 @@
                         <th>Diagnosis</th>
                         <th>Doctor ID</th>
                         <th>Date Submitted</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr th:each="healthticket: ${listHealthtickets}" th:if="${healthticket.diagnosis == null}">
                         <td th:text="${healthticket.ticketID}">Ticket ID</td>
                         <td>
                             <a title="View Patient's Information" th:href="@{'/doctor/view-patient/' + ${healthticket.patientID}}"
-                                th:text="${healthticket.patientID}" />
+                                th:text="${healthticket.patientID}"></a>
                         </td>
                         <td th:text="${healthticket.symptoms}">Symptoms</td>
                         <td th:text="${healthticket.diagnosis}">Diagnosis</td>
