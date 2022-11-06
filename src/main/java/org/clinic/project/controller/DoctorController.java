@@ -156,6 +156,18 @@ public class DoctorController {
         return "doctor_view_tickets";
     }
 
+    @RequestMapping("/doctor/viewResolvedTickets")
+    public String viewResolvedTickets(Model model) {
+        List<HealthTicket> listHealthtickets = healthTicketService.findAll();
+        model.addAttribute("listHealthtickets", listHealthtickets);
+        CustomDoctorDetails doctorInfo = (CustomDoctorDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Doctor doctor = doctorService.getLoggedInDoctor(doctorInfo.getDoctorID());
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("pageTitle", "Doctor View Tickets");
+        return "doctor_view_resolvedTickets";
+    }
+
     @RequestMapping("doctor/view-patient/{patientID}")
     public String doctorViewPatient(@PathVariable(name = "patientID") Patient patient, Model model) {
         String patientID = patient.getPatientID();
