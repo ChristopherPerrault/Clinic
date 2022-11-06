@@ -164,7 +164,7 @@ h4 {
   background-color: rgb(245, 171, 52);
 }
 
-/* --- FORMS --- */
+/* --- FORMS (INCLUDES ALL REGISTRATION AND LOGIN PAGES)--- */
 .form-container {
   display: flex;
   flex-flow: row nowrap;
@@ -233,4 +233,15 @@ h4 {
   align-items: flex-start;
   margin-left: 30px;
   margin-bottom: 100px;
+}
+
+/* --- ACCOUNT DASHBOARDS--- */
+
+.dashboard {
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  text-align: center;
 }

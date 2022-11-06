@@ -2,10 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments :: head">
+
 <body>
 	<div th:replace="fragments :: header-logged-in-doctor"></div>
-	<div>
-		<h1>This is your dashboard -- You can chillllllll here</h1>
+	<div class="dashboard">
+		<h2>This is your Doctor dashboard.<br><br>Use the menu above to access our services.</h2>
 	</div>
 	<div th:replace="fragments :: footer"></div>
 </body>
