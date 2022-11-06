@@ -43,9 +43,10 @@
     <!-- HEADER Logged in (patients) -->
     <div class="navbar-container" th:fragment="header-logged-in-patient">
         <nav class="nav">
-            <a href="/patient/homepage" title="Return to Homepage"><img th:src="@{/images/home-button-img.jpg}" class="img-home"></a>
+            <a href="/patient/homepage" title="Return to Homepage"><img th:src="@{/images/home-button-img.jpg}"
+                    class="img-home"></a>
             <ul class="menu">
-                <li><a href="/patient/homepage" title="Return to Homepage">Welcome [[${patient.firstName}]] | </a></li>
+                <li><a href="/patient/homepage" title="Return to Homepage">Welcome, [[${patient.firstName}]]</a></li>
                 <li>Need a Doctor?
                     <ul class="sub-menu">
                         <li><a href="/patient/addTicket" title="">Submit a New Ticket</a></li>
@@ -54,7 +55,8 @@
                 </li>
                 <li>My Account
                     <ul class="sub-menu">
-                        <li><a th:href="@{'/patient/edit/' + ${patient.patientID}}" title="View Account Info">Account Information</a></li>
+                        <li><a th:href="@{'/patient/edit/' + ${patient.patientID}}" title="View Account Info">Account
+                                Information</a></li>
                     </ul>
                 </li>
                 <li><a href="/patient/logout" title="Log Out">Log Out</a></li>
@@ -65,9 +67,11 @@
     <!-- HEADER Logged in (doctors) -->
     <div class="navbar-container" th:fragment="header-logged-in-doctor">
         <nav class="nav">
-            <a href="/doctor/homepage" title="Return to Homepage"><img th:src="@{/images/home-button-img.jpg}" class="img-home"></a>
+            <a href="/doctor/homepage" title="Return to Homepage"><img th:src="@{/images/home-button-img.jpg}"
+                    class="img-home"></a>
             <ul class="menu">
-            	<li><a href="/doctor/homepage" title="Return to Homepage">Welcome [[${doctor.firstName}]] | </a></li>
+                <li><a href="/doctor/homepage" title="Return to Homepage">Dr.[[${doctor.lastName}]]</a>
+                </li>
                 <li>Health Tickets
                     <ul class="sub-menu">
                         <li><a href="/doctor/viewTickets" title="">View Active Tickets</a></li>
@@ -78,7 +82,8 @@
                 </li>
                 <li>My Account
                     <ul class="sub-menu">
-                        <li><a th:href="@{'/doctor/edit/' + ${doctor.doctorID}}" title="View Account Info">Account Information</a></li>
+                        <li><a th:href="@{'/doctor/edit/' + ${doctor.doctorID}}" title="View Account Info">Account
+                                Information</a></li>
                     </ul>
                 </li>
                 <li><a href="/doctor/logout" title="Log Out">Log Out</a></li>
