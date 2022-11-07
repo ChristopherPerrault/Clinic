@@ -5,8 +5,8 @@
 
 <body>
     <div th:replace="fragments :: header-logged-in-doctor"></div>
-    <div class="form-container">
-        <div class="register-left">
+    <div  class="add-ticket-form">
+        <div>
             <h2>Health Ticket Add Diagnosis Form</h2>
             <br />
             <form action="#" th:action="@{'/doctor/processTicket/' + ${ticketID}}" th:object="${healthTicket}"
