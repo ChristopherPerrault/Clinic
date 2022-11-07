@@ -5,12 +5,12 @@
 
 <body>
     <div th:replace="fragments :: header-logged-in-patient"></div>
-    <div>
+    <div class="viewTickets">
         <div>
             <h1>Health Tickets</h1>
         </div>
         <div>
-            <table>
+            <table class="ticketTable">
                 <thead>
                     <tr>
                         <th>Ticket ID</th>
@@ -19,6 +19,7 @@
                         <th>Diagnosis</th>
                         <th>Doctor ID</th>
                         <th>Date Submitted</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

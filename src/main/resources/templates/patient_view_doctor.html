@@ -5,9 +5,9 @@
 
 <body>
 	<div th:replace="fragments :: header-logged-in-patient"></div>
-	<div>
+	<div class="viewTickets">
 		<div>
-			<table class="table table-striped table-bordered" th:object="${doctor}">
+			<table class="ticketTable" th:object="${doctor}">
 				<thead class="thead-dark">
 					<tr>
 						<th>Doctor ID</th>
