@@ -4,6 +4,7 @@ A Spring Boot application serving as a school project, demonstrating our underst
 
 Imagine a service where Patients and Doctors meet so that Symptoms can be submitted, reviewed, and applied Diagnoses for the Patient to see later.
 Using the following technologies, we were able to connect 2 types of Users via 3 tables with all data validated against constraints & authenticated, presented in an appealing UI that makes sense.
+
 We used:
 Spring Boot
 Spring Security
