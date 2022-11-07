@@ -26,7 +26,7 @@ public class DoctorService {
         return doctorRepo.findById(doctorID).get();
     }
 
-    // GET LOGGED IN PATIENT
+    // GET LOGGED IN DOCTOR
     public Doctor getLoggedInDoctor(String doctorID) {
         return doctorRepo.findByDoctorID(doctorID);
     }

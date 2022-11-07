@@ -16,8 +16,6 @@
                         <th>Ticket ID</th>
                         <th>Patient ID</th>
                         <th>Symptoms</th>
-                        <th>Diagnosis</th>
-                        <th>Doctor ID</th>
                         <th>Date Submitted</th>
                         <th>Actions</th>
                     </tr>
@@ -30,8 +28,6 @@
                                 th:text="${healthticket.patientID}"></a>
                         </td>
                         <td th:text="${healthticket.symptoms}">Symptoms</td>
-                        <td th:text="${healthticket.diagnosis}">Diagnosis</td>
-                        <td th:text="${healthticket.doctorID}">Doctor ID</td>
                         <td th:text="${healthticket.dateSubmitted}">Date Submitted</td>
                         <td>
                             <a th:href="@{'/doctor/edit-ticket/' + ${healthticket.ticketID}}">Add a Diagnosis</a>

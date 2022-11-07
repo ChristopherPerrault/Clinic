@@ -159,7 +159,7 @@ public class PatientController {
 	}
 
 	@PostMapping("/patient/processTicket")
-	public String processTeacher(@ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
+	public String processTicket(@ModelAttribute("healthTicket") HealthTicket healthTicket, Model model) {
 		CustomPatientDetails patientInfo = (CustomPatientDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		Patient patient = patientService.getLoggedInPatient(patientInfo.getPatientID());
