@@ -267,6 +267,38 @@ a:visited {
   text-align: center;
 }
 
+/* --- ADD TICKET  --- */
+.add-ticket-form {
+  font-family: "Manrope", sans-serif;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.add-ticket-form button {
+  height: 34px;
+  width: 200px;
+  margin-top: 20px;
+  font-size: 18px;
+  text-decoration: none;
+  border: solid 2px;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: rgb(93, 203, 247);
+}
+
+.add-ticket-form p,
+.add-ticket-form td {
+  font-size: 20px;
+}
+
+.add-ticket-form input {
+  width: 220px;
+}
+
 /* --- Viewing Tickets --- */
 
 .viewTickets {
@@ -276,6 +308,7 @@ a:visited {
   flex-flow: column nowrap;
   justify-content: center;
   text-align: center;
+  align-items: center;
 }
 
 .ticketTable {
