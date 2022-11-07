@@ -347,3 +347,33 @@ a:visited {
   font-weight: bold;
   padding: 0.5rem;
 }
+
+/* --- Patient/Doctor Logout --- */
+
+.logout {
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.logout img {
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem;
+}
+
+.logout > a {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 18px;
+  text-decoration: none;
+  border: solid 2px;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(93, 203, 247);
+}

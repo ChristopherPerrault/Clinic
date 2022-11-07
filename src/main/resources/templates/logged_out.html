@@ -5,11 +5,12 @@
 
 <body>
     <div th:replace="fragments :: header"></div>
-    <div>
+    <div class="logout">
         <h3><b>You have successfully logged out.</b></h3>
         <br>
+        <img th:src="@{/images/logout.png}" width="300px" height="400px" alt="">
         <br>
-        <h3><a th:href="@{/}">Back to Homepage</a></h3>
+        <a th:href="@{/}">Back to Homepage</a>
     </div>
     <div th:replace="fragments :: footer"></div>
 </body>
