@@ -5,30 +5,32 @@
 
 <body>
     <div th:replace="fragments :: header-logged-in-doctor"></div>
-    <div>
-        <h2>Health Ticket Add Diagnosis Form</h2>
-        <br />
-        <form action="#" th:action="@{'/doctor/processTicket/' + ${ticketID}}" th:object="${healthTicket}"
-            method="POST">
-            <table>
-                <tr>
-                    <td>Patient ID:</td>
-                    <td><input type="text" th:field="*{patientID}" readonly /></td>
-                </tr>
-                <tr>
-                    <td>Symptoms:</td>
-                    <td><input type="text" th:field="*{symptoms}" readonly /></td>
-                </tr>
-                <tr>
-                    <td>Diagnosis:</td>
-                    <td><input type="text" th:field="*{diagnosis}" /></td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Add Diagnosis</button> </td>
-                </tr>
-            </table>
-            <h4><a th:href="@{/doctor/homepage}">Back to Home</a></h4>
-        </form>
+    <div class="form-container">
+        <div class="register-left">
+            <h2>Health Ticket Add Diagnosis Form</h2>
+            <br />
+            <form action="#" th:action="@{'/doctor/processTicket/' + ${ticketID}}" th:object="${healthTicket}"
+                method="POST">
+                <table>
+                    <tr>
+                        <td>Patient ID:</td>
+                        <td><input type="text" th:field="*{patientID}" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>Symptoms:</td>
+                        <td><input type="text" th:field="*{symptoms}" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>Diagnosis:</td>
+                        <td><input type="text" th:field="*{diagnosis}" /></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Add Diagnosis</button> </td>
+                    </tr>
+                </table>
+                <h4><a th:href="@{/doctor/homepage}">Back to Home</a></h4>
+            </form>
+        </div>
     </div>
     <div th:replace="fragments :: footer"></div>
 </body>
