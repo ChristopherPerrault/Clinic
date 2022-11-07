@@ -360,10 +360,8 @@ a:visited {
 }
 
 .logout img {
-  margin-top: 4rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 4rem;
+  max-height: 260px;
+  margin: auto;
 }
 
 .logout > a {
