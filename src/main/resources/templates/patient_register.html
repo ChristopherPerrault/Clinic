@@ -57,7 +57,7 @@
                     <tr>
                         <td>Date of Birth:</td>
                         <td>
-                            <input type="date" th:field="*{dob}" />
+                            <input type="date" th:field="*{dob}" max="2022-11-06"/>
                             <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
                         </td>
                     </tr>
