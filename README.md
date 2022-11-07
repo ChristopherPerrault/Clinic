@@ -10,11 +10,17 @@ We used:
 Spring Boot
 
 Spring Security
+
 MySQL (via MySQL Workbench)
+
 Java (JDK 18)
+
 Thymeleaf for templates and fragments
+
 GitHub and GitHub Projects
+
 and Microsoft VS Code as our editor
+
 
 Written by a team of 3 contributors over 6 days in early November 2022.
 
