@@ -19,9 +19,7 @@ import org.clinic.project.model.CustomDoctorDetails;
 import org.clinic.project.model.Doctor;
 import org.clinic.project.model.HealthTicket;
 import org.clinic.project.model.Patient;
-// import org.clinic.project.model.HealthTicket;
 import org.clinic.project.service.DoctorService;
-// import org.clinic.project.service.HealthTicketService;
 import org.clinic.project.service.HealthTicketService;
 import org.clinic.project.service.PatientService;
 
